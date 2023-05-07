@@ -17,6 +17,8 @@
             android:exported="false" />
         <activity
             android:name=".PlayMusicActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.doanmobilemusicmedia0312.Introduce"
             android:exported="false" />
         <activity
