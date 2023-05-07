@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main">
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MY FAVORITE SONGS"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginTop="143dp"
+        android:layout_marginLeft="28dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginHorizontal="28dp"
+        android:layout_marginTop="180dp">
+        <ImageView
+            android:layout_width="58dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bolder_img"
+            android:src=""/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name song"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="79dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:text="Name singer"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            android:layout_marginLeft="79dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="5dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="70dp"
+            android:text="5:33"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:layout_marginLeft="79dp"/>
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:text="..."
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:gravity="right"
+            android:textSize="30dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginHorizontal="28dp"
+        android:layout_marginTop="312dp">
+        <ImageView
+            android:layout_width="58dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bolder_img"
+            android:src=""/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name song"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="79dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:text="Name singer"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            android:layout_marginLeft="79dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="5dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="70dp"
+            android:text="5:33"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:layout_marginLeft="79dp"/>
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:text="..."
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:gravity="right"
+            android:textSize="30dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginHorizontal="28dp"
+        android:layout_marginTop="246dp">
+        <ImageView
+            android:layout_width="58dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bolder_img"
+            android:src=""/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name song"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="79dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:text="Name singer"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            android:layout_marginLeft="79dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="5dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="70dp"
+            android:text="5:33"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:layout_marginLeft="79dp"/>
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:text="..."
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:gravity="right"
+            android:textSize="30dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginHorizontal="28dp"
+        android:layout_marginTop="378dp">
+        <ImageView
+            android:layout_width="58dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bolder_img"
+            android:src=""/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name song"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="79dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:text="Name singer"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            android:layout_marginLeft="79dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="5dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="70dp"
+            android:text="5:33"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:layout_marginLeft="79dp"/>
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:text="..."
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:gravity="right"
+            android:textSize="30dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginHorizontal="28dp"
+        android:layout_marginTop="444dp">
+        <ImageView
+            android:layout_width="58dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bolder_img"
+            android:src=""/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name song"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="79dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:text="Name singer"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            android:layout_marginLeft="79dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="5dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="70dp"
+            android:text="5:33"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:layout_marginLeft="79dp"/>
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:text="..."
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:gravity="right"
+            android:textSize="30dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/grey" >
+        <ImageView
+            android:layout_width="58dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/bolder_img"
+            android:src=""/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name song"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="79dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:text="Name singer"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            android:layout_marginLeft="79dp"/>
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/play"/>
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="50dp"
+            android:src="@drawable/tym"/>
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>
