@@ -13,13 +13,13 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
-            android:name=".Introduce"
+            android:name="com.example.doanmobilemusicmedia0312.Introduce"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.doanmobilemusicmedia0312.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".Splash"
+            android:name="com.example.doanmobilemusicmedia0312.Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

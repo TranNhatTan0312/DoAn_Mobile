@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Introduce"
+    tools:context="com.example.doanmobilemusicmedia0312.Introduce"
     android:background="@drawable/introduce_image">
     <ImageView
         android:layout_width="300dp"
