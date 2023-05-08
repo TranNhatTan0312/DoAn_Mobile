@@ -68,9 +68,6 @@ public class PlayMusicActivity extends AppCompatActivity implements IToolbarHand
         playMusicAdapter = new PlayMusicAdapter(this);
         playMusicAdapter.setToolbarListener(this);
         viewPager.setAdapter(playMusicAdapter);
-
-        PlayMusicAdapter.ZoomOutTransformer zoom = new PlayMusicAdapter.ZoomOutTransformer();
-        viewPager.setPageTransformer(zoom);
     }
 
     @Override

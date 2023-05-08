@@ -46,25 +46,6 @@ public class PlayMusicAdapter extends FragmentStateAdapter {
         return 2;
     }
 
-    public static class ZoomOutTransformer implements ViewPager2.PageTransformer{
-        private static final float MIN_SCALE = 0.85f;
-        private static final float MIN_ALPHA = 0.5f;
-
-        @Override
-        public void transformPage(@NonNull View page, float position) {
-            if (position < -1) {
-                page.setAlpha(0f);
-            } else if (position <= 1) {
-                float scaleFactor = Math.max(MIN_SCALE, 1 - Math.abs(position));
-                page.setScaleX(scaleFactor);
-                page.setScaleY(scaleFactor);
-                page.setAlpha(Math.max(MIN_ALPHA, 1 - Math.abs(position)));
-            } else {
-                page.setAlpha(0f);
-            }
-        }
-    }
-
     public void setToolbarListener(IToolbarHandler listener){
         this.listener = listener;
     }

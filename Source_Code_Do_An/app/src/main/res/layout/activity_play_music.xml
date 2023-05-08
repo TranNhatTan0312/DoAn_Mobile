@@ -11,7 +11,8 @@
         android:id="@+id/play_music_view_paper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
     </androidx.viewpager2.widget.ViewPager2>
     <include layout="@layout/fragment_song_option"/>

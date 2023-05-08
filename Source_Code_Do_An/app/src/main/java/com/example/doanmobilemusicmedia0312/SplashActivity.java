@@ -8,9 +8,7 @@ import android.view.animation.AnimationUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.doanmobilemusicmedia0312.R;
-
-public class Splash extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +28,7 @@ public class Splash extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent intent = new Intent(Splash.this, Introduce.class);
+                Intent intent = new Intent(SplashActivity.this, IntroduceActivity.class);
                 startActivity(intent);
                 finish();
             }

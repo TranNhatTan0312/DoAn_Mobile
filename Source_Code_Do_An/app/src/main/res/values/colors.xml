@@ -12,6 +12,7 @@
     <color name="orange">#F52F05</color>
     <color name="light_gray">#DDDDDD</color>
     <color name="light_grey">#B7B7B7</color>
+    <color name="dark_gray">#343434</color>
 
     <color name="my_orange">#FB4909</color>
     <color name="my_orange_2">#FF8C00</color>

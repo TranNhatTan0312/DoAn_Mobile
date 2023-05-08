@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/playing_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/dark"
+       >
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           >
+            <ImageView
+                android:id="@+id/back_edit_profile"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:contentDescription="back_button"
+                android:src="@drawable/back_image_button_anim" />
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="120dp"
+            android:gravity="center"
+            android:background="@drawable/circle">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/user"/>
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CAMVAN"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_marginTop="290dp"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="User: 123456"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:layout_marginTop="320dp"
+            android:textAlignment="center"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="366dp"
+            android:layout_marginHorizontal="25dp"
+            android:background="@drawable/custom_layout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/purple_700"
+                android:textSize="12dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="20dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/purple_700"
+                android:textSize="12dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="65dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/purple_700"
+                android:textSize="12dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="110dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/purple_700"
+                android:textSize="12dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="155dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/purple_700"
+                android:textSize="12dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="200dp"/>
+
+            <EditText
+                android:id="@+id/mail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="18dp"
+                android:layout_marginTop="10dp"
+                android:text="11234@gmail" />
+
+            <EditText
+                android:id="@+id/junior"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mail"
+                android:layout_marginHorizontal="18dp"
+                android:text="Junior"/>
+            <EditText
+                android:id="@+id/sdt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/junior"
+                android:layout_marginHorizontal="18dp"
+                android:text="1214154314"/>
+            <EditText
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/sdt"
+                android:layout_marginHorizontal="18dp"
+                android:text="2222222"/>
+            <EditText
+                android:id="@+id/sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/date"
+                android:layout_marginHorizontal="18dp"
+                android:text="Male"/>
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
