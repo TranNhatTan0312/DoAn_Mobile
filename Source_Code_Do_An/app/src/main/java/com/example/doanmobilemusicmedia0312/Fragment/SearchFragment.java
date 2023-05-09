@@ -1,14 +1,20 @@
 package com.example.doanmobilemusicmedia0312.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 
+import com.example.doanmobilemusicmedia0312.Adapter.SearchMusicAdapter;
+import com.example.doanmobilemusicmedia0312.MainActivity;
 import com.example.doanmobilemusicmedia0312.R;
+import com.example.doanmobilemusicmedia0312.SearchDetailActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +27,9 @@ public class SearchFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    GridView simpleGrid;
+    int logos[] = {R.drawable.img_1, R.drawable.img_2, R.drawable.img_3, R.drawable.img_4,};
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -61,6 +70,24 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false);
+        View view = inflater.inflate(R.layout.fragment_search, container, false);
+
+        simpleGrid = (GridView) view.findViewById(R.id.simpleGridView); // init GridView
+        // Create an object of CustomAdapter and set Adapter to GirdView
+        SearchMusicAdapter customAdapter = new SearchMusicAdapter(getContext(), logos);
+        simpleGrid.setAdapter(customAdapter);
+
+        SearchView searchView = view.findViewById(R.id.searchView);
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    Intent intent = new Intent(getContext(), SearchDetailActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        return view;
     }
 }
