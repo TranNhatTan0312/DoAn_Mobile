@@ -32,4 +32,13 @@
     <string name="r_b"><![CDATA[R&B]]></string>
     <string name="_1n">#1</string>
     <string name="trending_hits">TRENDING HITS</string>
+    <string name="pro_live_concerts">Pro Live Concerts</string>
+    <string name="best_of_2023">Best of 2023</string>
+    <string name="free_divine_concert">Free DIVINE Concert</string>
+    <string name="enjoy_live_concerts_and_benefits_with_pro_mode">Enjoy Live Concerts and benefits With Pro mode</string>
+    <string name="_2020_all_stars">2020 All Stars</string>
+    <string name="choose_your_artist">Choose Your Artist</string>
+    <string name="concert_of_2020">Concert of 2020</string>
+    <string name="resolution_2021">Resolution 2021</string>
+    <string name="live_performance">Live Performance</string>
 </resources>
