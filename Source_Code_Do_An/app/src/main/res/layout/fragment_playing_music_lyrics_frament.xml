@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/dark"
+        android:orientation="vertical"
+
+        tools:ignore="ScrollViewSize">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/playing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            app:elevation="100dp"
+            android:backgroundTint="@android:color/transparent"
+          >
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <ImageView
+                        android:id="@+id/playing_music_back"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="back_button"
+                        android:src="@drawable/back_image_button_anim" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@id/playing_music_option"
+                        android:layout_toEndOf="@id/playing_music_back">
+
+                        <TextView
+                            android:id="@+id/header_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:padding="8dp"
+                            android:text="Money"
+                            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse"
+                            android:textColor="@color/light_gray"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <ImageView
+                        android:id="@+id/playing_music_option"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/more_image_button_anim" />
+                </RelativeLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <ScrollView
+
+            android:layout_width="match_parent"
+            android:scrollbars="none"
+            android:layout_height="520dp"
+            android:layout_alignTop="@id/playing_toolbar"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="20dp"
+            app:cardUseCompatPadding="true">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="0dp">
+
+                    <ImageView
+                        android:id="@+id/playing_music_background"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="0dp"
+                        android:alpha="0.2"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/playing_music_image_template" />
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/lyrics_panel"
+                    android:layout_width="match_parent"
+                    android:layout_height="470dp"
+                    android:layout_marginTop="60dp"
+                    android:paddingStart="30dp"
+                    android:orientation="vertical"
+                    android:paddingEnd="30dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sleepin', you're on your tippy toes"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse">
+                    </TextView>
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Creepin' around like no one knows"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse">
+                    </TextView>
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Think you're so criminal"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse">
+                    </TextView>
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bruises on both my knees for you
+"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse">
+                    </TextView>
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Don't say thank you or please"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse">
+                    </TextView>
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="I do what I want when I'm wanting to"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse">
+                    </TextView>
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="My soul? So cynical"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse">
+                    </TextView>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:elevation="20dp"
+            android:paddingTop="10dp"
+            android:layout_height="198dp"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:background="@color/dark"
+           >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                app:layout_constraintBottom_toTopOf="@+id/textView2"
+                app:layout_constraintTop_toTopOf="@+id/textView2">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/playing_music_logo"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/playing_music_image_template"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/playing_music_small_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="96dp"
+                    android:maxWidth="250dp"
+                    android:text="Money"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large.Inverse"
+                    android:textColor="@color/light_gray"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/playing_music_small_singer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="96dp"
+                    android:maxWidth="250dp"
+                    android:text="Lisa"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse"
+                    android:textColor="@color/light_gray"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"></TextView>
+
+                <ImageView
+                    android:id="@+id/playing_music_favorite"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="16dp"
+                    android:contentDescription="back_button"
+                    android:src="@drawable/heart_icon_uncheck"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <SeekBar
+                    android:id="@+id/playing_music_timer_seek_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:max="100"
+                    android:progress="50"
+                    android:progressTint="@color/light_grey"
+                    android:thumbTint="@color/light_grey" />
+            </FrameLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/playing_music_small_current_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="2:07"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small.Inverse"
+                    android:textColor="@color/light_grey"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"></TextView>
+
+                <TextView
+                    android:id="@+id/playing_music_small_length_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="4:29"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small.Inverse"
+                    android:textColor="@color/light_grey"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </TextView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
+
+                <ImageView
+                    android:id="@+id/playing_music_pre_song"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="23dp"
+                    android:contentDescription=""
+                    android:src="@drawable/pre_play_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/playing_music_reload_song"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/playing_music_reload_song"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="45dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="23dp"
+                    android:contentDescription=""
+                    android:src="@drawable/reload_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/playing_music_pause_resume"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginBottom="4dp"
+                    android:contentDescription=""
+                    android:src="@drawable/playing_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/playing_music_next_song"
+                    app:layout_constraintStart_toEndOf="@+id/playing_music_pre_song"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/play_music_random_music"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="45dp"
+                    android:layout_marginBottom="23dp"
+                    android:contentDescription=""
+                    android:src="@drawable/random_play_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/playing_music_next_song"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="26dp"
+                    android:layout_marginBottom="23dp"
+                    android:contentDescription=""
+                    android:src="@drawable/next_play_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/play_music_random_music"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</FrameLayout>
