@@ -3,3 +3,4 @@
 2. Code xong push lên branch của mình
 3. Nhớ fetch and pull trước khi push
 4. Không đụng vào main branch nha (conflict là đi lun :>)
+## ĐỒ ÁN CHÍNH ĐANG Ở BRANCH DEVELOP2 NHA, MN KO PUSH VÀO ĐÓ
