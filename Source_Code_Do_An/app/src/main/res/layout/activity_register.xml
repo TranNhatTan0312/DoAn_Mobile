@@ -36,26 +36,39 @@
         android:id="@+id/SignIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/Username"
+        android:layout_above="@+id/Fullname"
         android:layout_marginBottom="50dp"
-        android:text="Sign In"
+        android:text="Register"
         android:textSize="35dp"
         android:textColor="@color/my_white_4"
         android:fontFamily="@font/satoshi_bold"
         android:gravity="center_horizontal">
     </TextView>
-
+    <EditText
+        android:id="@+id/Fullname"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@+id/Username"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/satoshi_medium"
+        android:gravityHint="center"
+        android:hint="Full name"
+        android:textColorHint="@color/my_white_6"
+        android:textSize="17dp">
+    </EditText>
     <EditText
         android:id="@+id/Username"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:layout_above="@+id/Password"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/satoshi_medium"
         android:gravityHint="center"
-        android:hint="Enter Username or Email"
+        android:hint="Email"
         android:textColorHint="@color/my_white_6"
         android:textSize="17dp">
     </EditText>
@@ -63,8 +76,8 @@
     <EditText
         android:id="@+id/Password"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_above="@+id/Forgot"
+        android:layout_height="50dp"
+        android:layout_above="@+id/btn_Register"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="20dp"
@@ -75,21 +88,10 @@
         android:textColorHint="@color/my_white_6"
         android:textSize="17dp">
     </EditText>
-    <TextView
-        android:id="@+id/Forgot"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="17dp"
-        android:text="Reset password"
-        android:textColor="@color/my_white_6"
-        android:fontFamily="@font/satoshi_medium"
-        android:layout_above="@+id/btn_SignIn"
-        android:layout_marginBottom="20dp"
-        android:gravity="left"
-        android:paddingLeft="50dp">
-    </TextView>
+
+
     <Button
-        android:id="@+id/btn_SignIn"
+        android:id="@+id/btn_Register"
         android:layout_width="300dp"
         android:layout_height="70dp"
         android:background="@drawable/rounded_button"
@@ -103,18 +105,18 @@
         android:layout_above="@+id/textview"
         android:layout_centerHorizontal="true"
 
-      />
+        />
     <View
-    android:id="@+id/textview"
-    android:layout_width="340dp"
-    android:layout_height="1dp"
-    android:background="@color/my_white_6"
-    android:layout_centerHorizontal="true"
-    android:layout_above="@+id/Register"
-    android:textSize="20sp"
-    android:textAllCaps="true"
-    android:fontFamily="@font/satoshi_medium"
-    android:layout_marginBottom="20dp" />
+        android:id="@+id/textview"
+        android:layout_width="340dp"
+        android:layout_height="1dp"
+        android:background="@color/my_white_6"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/Register"
+        android:textSize="20sp"
+        android:textAllCaps="true"
+        android:fontFamily="@font/satoshi_medium"
+        android:layout_marginBottom="20dp" />
 
     <TextView
         android:id="@+id/Register"
@@ -122,10 +124,10 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:textSize="17dp"
-        android:text="Not a member? Register now"
+        android:text="Have an account? Sign In now"
         android:textColor="@color/my_white_6"
         android:fontFamily="@font/satoshi_medium"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="160dp"
         android:layout_alignParentBottom="true"/>
 
 

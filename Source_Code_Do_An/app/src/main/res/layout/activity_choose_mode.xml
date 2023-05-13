@@ -35,7 +35,6 @@
         android:textColor="@color/my_gray_2"
         android:fontFamily="@font/satoshi_medium"
         android:layout_above="@+id/btn_started"
-
         android:gravity="center">
     </Gridlayout>
     <Button
