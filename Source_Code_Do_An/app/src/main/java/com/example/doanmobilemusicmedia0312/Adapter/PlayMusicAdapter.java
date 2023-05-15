@@ -1,26 +1,14 @@
 package com.example.doanmobilemusicmedia0312.Adapter;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.NumberPicker;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.adapter.FragmentViewHolder;
-import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.doanmobilemusicmedia0312.Fragment.PlayingMusicFragment;
-import com.example.doanmobilemusicmedia0312.Fragment.PlayingMusicLyricsFrament;
+import com.example.doanmobilemusicmedia0312.Model.Fragment.PlayingMusicFragment;
+import com.example.doanmobilemusicmedia0312.Model.Fragment.PlayingMusicLyricsFrament;
 import com.example.doanmobilemusicmedia0312.Interface.IToolbarHandler;
-import com.example.doanmobilemusicmedia0312.R;
 
 import java.util.List;
 

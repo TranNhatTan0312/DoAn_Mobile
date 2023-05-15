@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragment.SearchFragment"
+    tools:context=".Model.Fragment.SearchFragment"
     android:background="@color/dark"
     android:paddingTop="70dp"
     android:paddingBottom="60dp">

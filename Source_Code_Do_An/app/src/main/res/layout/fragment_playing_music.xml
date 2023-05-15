@@ -76,7 +76,8 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/water_card_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="10dp"
                 android:elevation="8dp"
@@ -86,7 +87,7 @@
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
+                    android:layout_height="match_parent"
                     android:padding="0dp">
 
                     <ImageView
@@ -116,7 +117,6 @@
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large.Inverse"
                     android:textColor="@color/light_gray"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/textView2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_chainStyle="packed">
@@ -195,6 +195,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:layout_margin="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_height="70dp">
 
@@ -273,41 +274,41 @@
 
 
         </LinearLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp">
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_marginTop="10dp">-->
 
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:backgroundTint="@color/light_gray"
-                android:text="Lyrics"
-                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small.Inverse"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.501"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+<!--            <TextView-->
+<!--                android:id="@+id/textView5"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="2dp"-->
+<!--                android:backgroundTint="@color/light_gray"-->
+<!--                android:text="Lyrics"-->
+<!--                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small.Inverse"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.501"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent">-->
 
-            </TextView>
+<!--            </TextView>-->
 
-            <ImageView
-                android:id="@+id/imageView24"
-                android:layout_width="30dp"
-                android:layout_height="20dp"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="8dp"
-                android:contentDescription=""
-                android:src="@drawable/arrow_up_icon"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView24"-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="20dp"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:layout_marginTop="1dp"-->
+<!--                android:layout_marginBottom="8dp"-->
+<!--                android:contentDescription=""-->
+<!--                android:src="@drawable/arrow_up_icon"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView5" />-->
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
     </RelativeLayout>
 </FrameLayout>
