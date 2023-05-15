@@ -11,10 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.doanmobilemusicmedia0312.Model.Fragment.FavoriteFragment;
-import com.example.doanmobilemusicmedia0312.Model.Fragment.HomeFragment;
-import com.example.doanmobilemusicmedia0312.Model.Fragment.ProfileFragment;
-import com.example.doanmobilemusicmedia0312.Model.Fragment.SearchFragment;
+import com.example.doanmobilemusicmedia0312.Fragment.FavoriteFragment;
+import com.example.doanmobilemusicmedia0312.Fragment.HomeFragment;
+import com.example.doanmobilemusicmedia0312.Fragment.ProfileFragment;
+import com.example.doanmobilemusicmedia0312.Fragment.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 

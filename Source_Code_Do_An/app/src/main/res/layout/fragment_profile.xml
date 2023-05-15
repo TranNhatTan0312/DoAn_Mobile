@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Model.Fragment.ProfileFragment"
+    tools:context=".Fragment.ProfileFragment"
     android:background="@color/dark"
     android:paddingTop="70dp"
     android:paddingBottom="60dp">
