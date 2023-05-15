@@ -6,8 +6,8 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.adapter.FragmentViewHolder;
 
-import com.example.doanmobilemusicmedia0312.Model.Fragment.PlayingMusicFragment;
-import com.example.doanmobilemusicmedia0312.Model.Fragment.PlayingMusicLyricsFrament;
+import com.example.doanmobilemusicmedia0312.Fragment.PlayingMusicFragment;
+import com.example.doanmobilemusicmedia0312.Fragment.PlayingMusicLyricsFrament;
 import com.example.doanmobilemusicmedia0312.Interface.IToolbarHandler;
 
 import java.util.List;
