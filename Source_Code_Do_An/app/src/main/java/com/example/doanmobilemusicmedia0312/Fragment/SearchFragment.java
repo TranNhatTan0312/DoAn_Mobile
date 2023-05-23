@@ -32,6 +32,7 @@ public class SearchFragment extends Fragment {
     String songIds[] = {"song_KEwYw9SIg28z81TfiogP","song_KEwYw9SIg28z81TfiogP","song_KEwYw9SIg28z81TfiogP","song_KEwYw9SIg28z81TfiogP"};
 
 
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -76,6 +77,7 @@ public class SearchFragment extends Fragment {
         simpleGrid = (GridView) view.findViewById(R.id.simpleGridView); // init GridView
         // Create an object of CustomAdapter and set Adapter to GirdView
         SearchMusicAdapter customAdapter = new SearchMusicAdapter(getContext(), logos, songIds);
+
         simpleGrid.setAdapter(customAdapter);
 
         SearchView searchView = view.findViewById(R.id.searchView);

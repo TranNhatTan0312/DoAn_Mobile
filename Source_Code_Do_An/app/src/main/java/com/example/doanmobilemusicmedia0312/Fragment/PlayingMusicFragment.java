@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.IBinder;
 import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,6 +65,7 @@ public class PlayingMusicFragment extends Fragment {
     }
 
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +79,7 @@ public class PlayingMusicFragment extends Fragment {
     public void setSongId(String song_id){
         this.song_id = song_id;
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -110,6 +113,7 @@ public class PlayingMusicFragment extends Fragment {
     }
 
     private void addEvents() {
+
         moreOption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -207,6 +211,7 @@ public class PlayingMusicFragment extends Fragment {
     public void setToolbarListener(IToolbarHandler listener){
         this.toolbarListener = listener;
     }
+
 
 
 
