@@ -13,7 +13,7 @@ import com.example.doanmobilemusicmedia0312.Interface.IToolbarHandler;
 import java.util.List;
 
 public class PlayMusicAdapter extends FragmentStateAdapter {
-
+    String song_id;
     IToolbarHandler listener;
     public PlayMusicAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
@@ -23,7 +23,7 @@ public class PlayMusicAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         switch (position){
-            case 0: return new PlayingMusicFragment();
+            case 0: return new PlayingMusicFragment(song_id);
             case 1: return new PlayingMusicLyricsFrament();
             default: return null;
         }
@@ -33,6 +33,8 @@ public class PlayMusicAdapter extends FragmentStateAdapter {
     public int getItemCount() {
         return 2;
     }
+    public void setSong(String song_id){ this.song_id = song_id;}
+    public String getSong(){ return song_id; }
 
     public void setToolbarListener(IToolbarHandler listener){
         this.listener = listener;
@@ -43,6 +45,7 @@ public class PlayMusicAdapter extends FragmentStateAdapter {
         super.onBindViewHolder(holder, position, payloads);
 
         Fragment fragment = this.createFragment(position);
+
         if (fragment instanceof PlayingMusicFragment) {
             ((PlayingMusicFragment) fragment).setToolbarListener(listener);
         }else if (fragment instanceof PlayingMusicLyricsFrament) {

@@ -157,7 +157,7 @@
                     android:id="@+id/musicTimerSeekBar"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:progress="50"
+                    android:progress="0"
                     android:max="100"
                     android:thumbTint="@color/light_grey"
                     android:progressTint="@color/light_grey"
@@ -228,7 +228,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/stopMusic"
+                    android:id="@+id/playIcon"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_centerVertical="true"
