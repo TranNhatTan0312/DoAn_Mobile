@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
@@ -15,7 +16,7 @@ import com.example.doanmobilemusicmedia0312.Interface.IToolbarHandler;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 public class PlayMusicActivity extends AppCompatActivity implements IToolbarHandler{
-
+    String song_id;
     ViewPager2 viewPager;
 //    FrameLayout mainPanel;
     FrameLayout bottomSheetLayout;
@@ -44,12 +45,15 @@ public class PlayMusicActivity extends AppCompatActivity implements IToolbarHand
 
     private void addControls() {
 
+        getData();
         addCommonControl();
         addBottomSheet();
         addViewPager();
+    }
 
-
-
+    private void getData() {
+        Intent intent = getIntent();
+        song_id = intent.getStringExtra("id");
     }
 
     private void addCommonControl() {
@@ -67,7 +71,9 @@ public class PlayMusicActivity extends AppCompatActivity implements IToolbarHand
     private void addViewPager() {
         playMusicAdapter = new PlayMusicAdapter(this);
         playMusicAdapter.setToolbarListener(this);
+        playMusicAdapter.setSong(song_id);
         viewPager.setAdapter(playMusicAdapter);
+
     }
 
     @Override

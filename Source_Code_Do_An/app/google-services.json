@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "153541577331",
+    "project_id": "s2play",
+    "storage_bucket": "s2play.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:153541577331:android:0a1dd406d77c9e5224f806",
+        "android_client_info": {
+          "package_name": "com.example.doanmobilemusicmedia0312"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "153541577331-jpi6hmkhehiu7k8paf4ssbin86ngkvut.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiUiwkl8uR3wU4nBjjwo79dAN5AGLUJPA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "153541577331-jpi6hmkhehiu7k8paf4ssbin86ngkvut.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

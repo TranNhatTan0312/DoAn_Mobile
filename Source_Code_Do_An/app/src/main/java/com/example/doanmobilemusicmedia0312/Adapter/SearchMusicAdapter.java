@@ -15,12 +15,15 @@ import com.example.doanmobilemusicmedia0312.R;
 public class SearchMusicAdapter extends BaseAdapter {
     Context context;
     int logos[];
+    String songIds[];
     LayoutInflater inflter;
 
-    public SearchMusicAdapter(Context context, int[] logos) {
+    public SearchMusicAdapter(Context context, int[] logos, String[] songIds) {
         super();
         this.context = context;
         this.logos = logos;
+        this.songIds = songIds;
+
         inflter	=	LayoutInflater.from(context);
     }
 
@@ -53,6 +56,7 @@ public class SearchMusicAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context,PlayMusicActivity.class);
+                intent.putExtra("id",songIds[i]);
                 context.startActivity(intent);
             }
         });
