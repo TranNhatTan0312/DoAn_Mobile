@@ -1,6 +1,8 @@
 package com.example.doanmobilemusicmedia0312.Model;
 
-public class MusicModel {
+import java.io.Serializable;
+
+public class MusicModel implements Serializable {
     private String imageUrl;
     private String dateRelease;
     private String genre;
