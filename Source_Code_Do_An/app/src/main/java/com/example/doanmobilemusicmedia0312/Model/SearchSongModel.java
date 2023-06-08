@@ -1,8 +1,16 @@
 package com.example.doanmobilemusicmedia0312.Model;
 
 public class SearchSongModel {
-    String musicName, musicNum;
-    int img;
+    String musicName, musicNum, songId, img;
+
+
+    public String getSongId() {
+        return songId;
+    }
+
+    public void setSongId(String songId) {
+        this.songId = songId;
+    }
 
     public String getMusicName(){
         return musicName;
@@ -20,11 +28,11 @@ public class SearchSongModel {
         this.musicNum = musicNum;
     }
 
-    public int getImg(){
-        return img;
+    public String getImg(){
+        return this.img;
     }
 
-    public void setImg(int img){
+    public void setImg(String img){
         this.img = img;
     }
 }

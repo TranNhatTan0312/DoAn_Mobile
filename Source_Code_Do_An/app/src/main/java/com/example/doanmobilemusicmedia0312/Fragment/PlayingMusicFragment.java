@@ -13,6 +13,7 @@ import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.media.AudioAttributes;
@@ -23,6 +24,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
@@ -37,8 +39,11 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.doanmobilemusicmedia0312.Adapter.PlayMusicAdapter;
+import com.example.doanmobilemusicmedia0312.BroadcastReceiver.MusicBroadcastReceiver;
+import com.example.doanmobilemusicmedia0312.Interface.IMusicActivity;
 import com.example.doanmobilemusicmedia0312.Interface.IToolbarHandler;
 import com.example.doanmobilemusicmedia0312.Model.MusicModel;
+import com.example.doanmobilemusicmedia0312.Model.SearchSongModel;
 import com.example.doanmobilemusicmedia0312.R;
 import com.example.doanmobilemusicmedia0312.Service.BackgroundMusicBinder;
 import com.example.doanmobilemusicmedia0312.Service.BackgroundMusicService;
@@ -50,6 +55,7 @@ import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.net.URL;
@@ -59,11 +65,27 @@ import java.util.List;
 import java.util.logging.Logger;
 
 
-public class PlayingMusicFragment extends Fragment {
+public class PlayingMusicFragment extends Fragment implements IMusicActivity {
     private static final String SHARED_PREFERENCES_NAME = "song_pref";
     private ImageView moreOption, back, playIcon, logoImage, loopMusic, preMusic, nextMusic;
-    private TextView txtCurrentTime, txtLengthTime;
+    private TextView txtCurrentTime, txtLengthTime, txtMusicName, txtSinger;
     private SeekBar musicTimerSeekBar;
+    private MusicBroadcastReceiver receiver;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        receiver = new MusicBroadcastReceiver(this);
+        IntentFilter filter = new IntentFilter(MusicBroadcastReceiver.ACTION_SONG_CHANGED);
+        getActivity().registerReceiver(receiver, filter);
+    }
+    @Override
+    public void updateUI(MusicModel song) {
+        Picasso.get().load(song.getImageUrl()).into(logoImage);
+        txtMusicName.setText(song.getSongName());
+        txtSinger.setText(song.getSinger());
+    }
+
     boolean isLoop;
     Thread updateSeekBarThread;
     private BackgroundMusicService musicService;
@@ -82,6 +104,7 @@ public class PlayingMusicFragment extends Fragment {
                         int currentPosition = musicService.getCurrentPosition();
                         musicTimerSeekBar.setProgress(currentPosition);
                         txtCurrentTime.setText(SongTimeDisplay.display(currentPosition));
+                        playIcon.setImageResource(R.drawable.playing_icon);
                     }
                     mHandler.postDelayed(this, 1000);
                 }
@@ -108,18 +131,16 @@ public class PlayingMusicFragment extends Fragment {
             musicService = null;
         }
     };
-
-    MusicModel music;
-    String song_id;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    boolean isNewSong;
+    MusicModel song;
     DocumentReference docRef;
     SharedPreferences pref;
     SharedPreferences.Editor pref_editor;
 
     private static IToolbarHandler toolbarListener;
-    public PlayingMusicFragment(String song_id) {
-
-        this.song_id = song_id;
+    public PlayingMusicFragment(MusicModel song, boolean isNewSong) {
+        this.isNewSong = isNewSong;
+        this.song = song;
     }
 
 
@@ -128,14 +149,13 @@ public class PlayingMusicFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        music = new MusicModel();
         pref = getContext().getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
         isLoop = pref.getBoolean("loop", false);
 
     }
 
-    public void setSongId(String song_id){
-        this.song_id = song_id;
+    public void setSongId(MusicModel song){
+        this.song = song;
     }
 
 
@@ -146,13 +166,15 @@ public class PlayingMusicFragment extends Fragment {
 //        Intent intent = new Intent(getContext(), BackgroundMusicService.class);
 
         addControls(view);
-        if(!getServiceRunning("com.example.doanmobilemusicmedia0312.Service.BackgroundMusicService", getActivity())){
+
+
+        if(isNewSong == true){
             startMusic();
         }else{
             Intent intent = new Intent(getContext(), BackgroundMusicService.class);
             getContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
-
         }
+
         addEvents();
         // Inflate the layout for this fragment
         return view;
@@ -170,9 +192,12 @@ public class PlayingMusicFragment extends Fragment {
         nextMusic = (ImageView)view.findViewById(R.id.nextMusic);
         txtCurrentTime = (TextView)view.findViewById(R.id.txtCurrentTime);
         txtLengthTime = (TextView)view.findViewById(R.id.txtLengthTime);
+        txtMusicName = view.findViewById(R.id.txtMusicName);
+        txtSinger = view.findViewById(R.id.txtMusicSinger);
 
-
-
+        if(this.song != null){
+            updateUI(this.song);
+        }
 
         setInitValue();
 
@@ -203,7 +228,6 @@ public class PlayingMusicFragment extends Fragment {
         playIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if(isPlaying()){
                     pauseSong();
                     playIcon.setImageResource(R.drawable.icon_play_music);
@@ -272,42 +296,11 @@ public class PlayingMusicFragment extends Fragment {
     }
 
     private void startMusic() {
-        docRef = db.collection("songs").document(song_id);
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if(documentSnapshot.exists()){
-                    music.setSinger(documentSnapshot.getString("singer"));
-                    music.setGenre(documentSnapshot.getString("genre"));
-                    music.setLength(documentSnapshot.getString("length"));
-                    music.setSongName(documentSnapshot.getString("name"));
-                    music.setImageUrl(documentSnapshot.getString("cover_image"));
-                    music.setDateRelease(documentSnapshot.getString("date_release"));
-                    music.setSourceUrl(documentSnapshot.getString("url"));
-                    music.setViews(documentSnapshot.getLong("views"));
 
-                    playSong(new ArrayList<MusicModel>(Arrays.asList(music)),0);
-
-
-                }else {
-                    Log.d(TAG, "No such document");
-                }
-            }
-        });
-
+        playSong(new ArrayList<MusicModel>(Arrays.asList(song)),0);
 
 
     }
-
-//    private void updateMusicData() {
-//        Intent intent = new Intent(getContext(), BackgroundMusicService.class);
-//        intent.putExtra("sourceUrl",music.getSourceUrl());
-//        intent.putExtra("loop",isLoop);
-//
-//        getContext().startService(intent);
-//
-//
-//    }
 
     public void setToolbarListener(IToolbarHandler listener){
         this.toolbarListener = listener;
@@ -321,63 +314,102 @@ public class PlayingMusicFragment extends Fragment {
         getContext().startService(intent);
         getContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
 
-
-
-
     }
-    private boolean getServiceRunning(String className, Context context) {
-        ActivityManager manager = (ActivityManager) getContext().getSystemService(Context.ACTIVITY_SERVICE);
-        ArrayList<ActivityManager.RunningServiceInfo> runningServiceInfo = (ArrayList<ActivityManager.RunningServiceInfo>) manager.getRunningServices(30);
-        for (int i = 0; i < runningServiceInfo.size(); i++){
-            if (runningServiceInfo.get(i).service.getClassName().toString().equals(className)) {
-               return true;
-            }
+
+
+    public void pauseSong() {
+        try{
+            musicService.pause();
+        }catch (Exception ex){
+
+        }
+    }
+    public void continueSong() {
+        try{
+            musicService.resume();
+        }catch (Exception ex){
+
+        }
+    }
+
+    public void previousSong() {
+        try{
+            musicService.previous();
+        }catch (Exception ex){
+
+        }
+    }
+
+    public void nextSong() {
+        try{
+            musicService.next();
+        }catch (Exception ex){
+
+        }
+    }
+
+    public void stopSong() {
+        try{
+            musicService.stop();
+        }catch (Exception ex){
+
+        }
+    }
+
+    public void setLooping(boolean isLooping) {
+        try{
+            musicService.setLooping(isLooping);
+        }catch (Exception ex){
+
+        }
+    }
+
+    public void setSeekTo(int position){
+        try{
+            musicService.seekTo(position);
+        }catch (Exception ex){
+
+        }
+    }
+
+    public boolean isPlaying() {
+        try{
+            return musicService.isPlaying();
+
+        }catch (Exception ex){
+
         }
         return false;
     }
 
-    public void pauseSong() {
-        musicService.pause();
-    }
-    public void continueSong() {
-        musicService.resume();
-    }
-
-    public void previousSong() {
-        musicService.previous();
-    }
-
-    public void nextSong() {
-        musicService.next();
-    }
-
-    public void stopSong() {
-        musicService.stop();
-    }
-
-    public void setLooping(boolean isLooping) {
-        musicService.setLooping(isLooping);
-    }
-
-    public void setSeekTo(int position){
-        musicService.seekTo(position);
-    }
-
-    public boolean isPlaying() {
-        return musicService.isPlaying();
-    }
-
     public int getCurrentPosition() {
-        return musicService.getCurrentPosition();
+        try{
+            return musicService.getCurrentPosition();
+
+        }catch (Exception ex){
+
+        }
+        return 0;
     }
 
     public int getDuration() {
-        return musicService.getDuration();
+        try{
+            return musicService.getDuration();
+        }catch (Exception ex){
+
+        }
+        return 0;
     }
 
     public MusicModel getCurrentSong() {
-        return musicService.getCurrentSong();
+        try{
+            return musicService.getCurrentSong();
+        }catch (Exception ex){
+
+        }
+        return null;
     }
+
 
 
 }
