@@ -13,6 +13,7 @@ import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.media.AudioAttributes;
@@ -23,6 +24,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
@@ -37,8 +39,11 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.doanmobilemusicmedia0312.Adapter.PlayMusicAdapter;
+import com.example.doanmobilemusicmedia0312.BroadcastReceiver.MusicBroadcastReceiver;
+import com.example.doanmobilemusicmedia0312.Interface.IMusicActivity;
 import com.example.doanmobilemusicmedia0312.Interface.IToolbarHandler;
 import com.example.doanmobilemusicmedia0312.Model.MusicModel;
+import com.example.doanmobilemusicmedia0312.Model.SearchSongModel;
 import com.example.doanmobilemusicmedia0312.R;
 import com.example.doanmobilemusicmedia0312.Service.BackgroundMusicBinder;
 import com.example.doanmobilemusicmedia0312.Service.BackgroundMusicService;
@@ -50,6 +55,7 @@ import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.net.URL;
@@ -59,11 +65,27 @@ import java.util.List;
 import java.util.logging.Logger;
 
 
-public class PlayingMusicFragment extends Fragment {
+public class PlayingMusicFragment extends Fragment implements IMusicActivity {
     private static final String SHARED_PREFERENCES_NAME = "song_pref";
     private ImageView moreOption, back, playIcon, logoImage, loopMusic, preMusic, nextMusic;
-    private TextView txtCurrentTime, txtLengthTime;
+    private TextView txtCurrentTime, txtLengthTime, txtMusicName, txtSinger;
     private SeekBar musicTimerSeekBar;
+    private MusicBroadcastReceiver receiver;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        receiver = new MusicBroadcastReceiver(this);
+        IntentFilter filter = new IntentFilter(MusicBroadcastReceiver.ACTION_SONG_CHANGED);
+        getActivity().registerReceiver(receiver, filter);
+    }
+    @Override
+    public void updateUI(MusicModel song) {
+        Picasso.get().load(song.getImageUrl()).into(logoImage);
+        txtMusicName.setText(song.getSongName());
+        txtSinger.setText(song.getSinger());
+    }
+
     boolean isLoop;
     Thread updateSeekBarThread;
     private BackgroundMusicService musicService;
@@ -82,6 +104,7 @@ public class PlayingMusicFragment extends Fragment {
                         int currentPosition = musicService.getCurrentPosition();
                         musicTimerSeekBar.setProgress(currentPosition);
                         txtCurrentTime.setText(SongTimeDisplay.display(currentPosition));
+                        playIcon.setImageResource(R.drawable.playing_icon);
                     }
                     mHandler.postDelayed(this, 1000);
                 }
@@ -145,7 +168,7 @@ public class PlayingMusicFragment extends Fragment {
         addControls(view);
 
 
-        if(!getServiceRunning("com.example.doanmobilemusicmedia0312.Service.BackgroundMusicService", getActivity()) || isNewSong == true){
+        if(isNewSong == true){
             startMusic();
         }else{
             Intent intent = new Intent(getContext(), BackgroundMusicService.class);
@@ -169,9 +192,12 @@ public class PlayingMusicFragment extends Fragment {
         nextMusic = (ImageView)view.findViewById(R.id.nextMusic);
         txtCurrentTime = (TextView)view.findViewById(R.id.txtCurrentTime);
         txtLengthTime = (TextView)view.findViewById(R.id.txtLengthTime);
+        txtMusicName = view.findViewById(R.id.txtMusicName);
+        txtSinger = view.findViewById(R.id.txtMusicSinger);
 
-
-
+        if(this.song != null){
+            updateUI(this.song);
+        }
 
         setInitValue();
 
@@ -288,20 +314,8 @@ public class PlayingMusicFragment extends Fragment {
         getContext().startService(intent);
         getContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
 
-
-
-
     }
-    private boolean getServiceRunning(String className, Context context) {
-        ActivityManager manager = (ActivityManager) getContext().getSystemService(Context.ACTIVITY_SERVICE);
-        ArrayList<ActivityManager.RunningServiceInfo> runningServiceInfo = (ArrayList<ActivityManager.RunningServiceInfo>) manager.getRunningServices(30);
-        for (int i = 0; i < runningServiceInfo.size(); i++){
-            if (runningServiceInfo.get(i).service.getClassName().toString().equals(className)) {
-               return true;
-            }
-        }
-        return false;
-    }
+
 
     public void pauseSong() {
         try{
@@ -395,6 +409,7 @@ public class PlayingMusicFragment extends Fragment {
         }
         return null;
     }
+
 
 
 }

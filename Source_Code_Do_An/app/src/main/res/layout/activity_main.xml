@@ -48,8 +48,8 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_container"
             android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:defaultNavHost="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -57,54 +57,55 @@
             app:layout_constraintTop_toTopOf="parent">
 
         </androidx.fragment.app.FragmentContainerView>
-<!--        <LinearLayout-->
-<!--            android:id="@+id/music_status_bar"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="55dp"-->
-<!--            android:layout_alignParentBottom="true"-->
-<!--            android:layout_marginBottom="60dp"-->
-<!--            android:background="@color/dark_gray"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:padding="5dp"-->
-<!--            android:paddingStart="10dp"-->
-<!--            android:paddingEnd="10dp">-->
-<!--            <ImageView-->
-<!--                android:id="@+id/music_status_bar_image"-->
-<!--                android:layout_width="50dp"-->
-<!--                android:layout_height="50dp"-->
-<!--                android:src="@drawable/playing_music_image_template"-->
-<!--                android:scaleType="centerCrop"-->
-<!--                >-->
-<!--            </ImageView>-->
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_marginStart="15dp"-->
-<!--                android:orientation="vertical"-->
-<!--                android:layout_weight="1">-->
-<!--                <TextView-->
-<!--                    android:id="@+id/music_status_bar_title"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Money"-->
-<!--                    android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"/>-->
-<!--                <TextView-->
-<!--                    android:id="@+id/music_status_bar_singer"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Lisa"-->
-<!--                    android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"/>-->
-<!--            </LinearLayout>-->
-<!--            <ImageView-->
-<!--                android:id="@+id/play_stop_music_button"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:src="@drawable/arrow_play_mini_icon"-->
-<!--                android:scaleType="center"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_marginEnd="10dp"-->
-<!--                />-->
-<!--        </LinearLayout>-->
+        <LinearLayout
+            android:id="@+id/music_status_bar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="60dp"
+            android:background="@color/dark_gray"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:padding="5dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp">
+            <ImageView
+                android:id="@+id/music_status_bar_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/playing_music_image_template"
+                android:scaleType="centerCrop"
+                >
+            </ImageView>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/music_status_bar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Money"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"/>
+                <TextView
+                    android:id="@+id/music_status_bar_singer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lisa"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"/>
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/play_stop_music_button"
+                android:layout_width="15dp"
+                android:layout_height="20dp"
+                android:src="@drawable/arrow_play_mini_icon"
+                android:scaleType="fitCenter"
+                android:layout_gravity="center"
+                android:layout_marginEnd="10dp"
+                />
+        </LinearLayout>
     </RelativeLayout>
 
     <com.google.android.material.bottomappbar.BottomAppBar

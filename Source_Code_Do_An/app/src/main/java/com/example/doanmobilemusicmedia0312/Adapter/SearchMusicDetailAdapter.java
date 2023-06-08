@@ -1,6 +1,7 @@
 package com.example.doanmobilemusicmedia0312.Adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,7 @@ public class SearchMusicDetailAdapter extends RecyclerView.Adapter<SearchMusicDe
         SearchSongModel searchModelClass = arrayList.get(position);
         holder.musicName.setText(searchModelClass.getMusicName());
         holder.musicNum.setText(String.valueOf(searchModelClass.getMusicNum()));
-        holder.img.setImageResource(searchModelClass.getImg());
+        holder.img.setImageURI(Uri.parse(searchModelClass.getImg()));
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.example.doanmobilemusicmedia0312.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.doanmobilemusicmedia0312.Model.SearchSongModel;
 import com.example.doanmobilemusicmedia0312.PlayMusicActivity;
 import com.example.doanmobilemusicmedia0312.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -44,7 +46,7 @@ public class PlaylistAdapter  extends RecyclerView.Adapter<PlaylistAdapter.Playl
         SearchSongModel searchModelClass = arrayList.get(position);
         holder.musicName.setText(searchModelClass.getMusicName());
         holder.musicNum.setText(String.valueOf(searchModelClass.getMusicNum()));
-        holder.img.setImageResource(searchModelClass.getImg());
+        Picasso.get().load(searchModelClass.getImg()).into((holder.img));
         holder.setSong_id(searchModelClass.getSongId());
     }
 

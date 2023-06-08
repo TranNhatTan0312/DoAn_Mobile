@@ -58,9 +58,9 @@ public class PlayMusicActivity extends AppCompatActivity implements IToolbarHand
 
     private void addControls() {
         song = new MusicModel();
-        getData();
         addCommonControl();
         addBottomSheet();
+        getData();
 
     }
 
@@ -94,6 +94,7 @@ public class PlayMusicActivity extends AppCompatActivity implements IToolbarHand
                 }
             });
         }else{
+            song = (MusicModel) bundle.getSerializable("OLDSONG");
             addViewPager();
         }
 
@@ -115,9 +116,9 @@ public class PlayMusicActivity extends AppCompatActivity implements IToolbarHand
     private void addViewPager() {
         playMusicAdapter = new PlayMusicAdapter(this);
         playMusicAdapter.setToolbarListener(this);
-        if(isNewMusic == true){
-            playMusicAdapter.setSong(song);
-            playMusicAdapter.setIsNewSong(isPlaylist);
+        playMusicAdapter.setSong(song);
+        if(isNewMusic){
+            playMusicAdapter.setIsPlaylist(isPlaylist);
         }
         playMusicAdapter.setIsNewSong(isNewMusic);
         viewPager.setAdapter(playMusicAdapter);

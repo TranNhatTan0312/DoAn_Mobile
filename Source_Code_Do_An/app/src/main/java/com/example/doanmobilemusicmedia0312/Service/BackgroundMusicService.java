@@ -12,6 +12,7 @@ import android.os.IBinder;
 
 import androidx.annotation.Nullable;
 
+import com.example.doanmobilemusicmedia0312.BroadcastReceiver.MusicBroadcastReceiver;
 import com.example.doanmobilemusicmedia0312.Model.MusicModel;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -164,6 +165,9 @@ public class BackgroundMusicService extends Service implements MediaPlayer.OnCom
         if (songList != null && songIndex >= 0 && songIndex < songList.size()) {
             this.songList = songList;
             this.songIndex = songIndex;
+
+            setBroadcastUpdateUI();
+
             playSong();
         }
     }
@@ -179,6 +183,7 @@ public class BackgroundMusicService extends Service implements MediaPlayer.OnCom
 
     @Override
     public void onCompletion(MediaPlayer mediaPlayer) {
+
         if(songList != null){
             if(isLooping){
                 mediaPlayer.seekTo(0);
@@ -186,6 +191,7 @@ public class BackgroundMusicService extends Service implements MediaPlayer.OnCom
             }else{
                 if(songList.size() > 1){
                     handleNextAction();
+                    setBroadcastUpdateUI();
                 }else{
                     mediaPlayer.stop();
                 }
@@ -230,11 +236,21 @@ public class BackgroundMusicService extends Service implements MediaPlayer.OnCom
         return mediaPlayer.getDuration();
     }
     public void seekTo(int position) {
-        mediaPlayer.seekTo(position);
+        if(mediaPlayer.isPlaying())
+            mediaPlayer.seekTo(position);
     }
 
     public MusicModel getCurrentSong() {
         return songList.get(songIndex);
+    }
+
+    public void setBroadcastUpdateUI(){
+        if(songList != null){
+            Intent broadcastIntent = new Intent(MusicBroadcastReceiver.ACTION_SONG_CHANGED);
+            broadcastIntent.putExtra(MusicBroadcastReceiver.EXTRA_SONG, songList.get(songIndex));
+            sendBroadcast(broadcastIntent);
+        }
+
     }
 //    public void play() {
 //
