@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,10 +24,15 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNav;
     private ImageView open_setting;
+
+    private LinearLayout music_status_bar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        music_status_bar = findViewById(R.id.music_status_bar);
 
         addBottomNavigation();
         addControls();
@@ -41,6 +48,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+//        music_status_bar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this, PlayMusicActivity.class);
+//                Bundle bundle = new Bundle();
+//
+//                bundle.putBoolean("NEWSONG", false);
+//
+//                intent.putExtra("data",bundle);
+//                startActivity(intent);
+//
+//
+//            }
+//        });
     }
 
     private void addControls() {

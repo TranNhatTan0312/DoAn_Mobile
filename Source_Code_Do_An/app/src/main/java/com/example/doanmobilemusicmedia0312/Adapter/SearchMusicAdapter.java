@@ -2,6 +2,7 @@ package com.example.doanmobilemusicmedia0312.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +57,13 @@ public class SearchMusicAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context,PlayMusicActivity.class);
-                intent.putExtra("id",songIds[i]);
+
+                Bundle bundle = new Bundle();
+                bundle.putString("SONG", songIds[i]);
+                bundle.putBoolean("PLAYLIST",false);
+                bundle.putBoolean("NEWSONG",true);
+
+                intent.putExtra("data",bundle);
                 context.startActivity(intent);
             }
         });

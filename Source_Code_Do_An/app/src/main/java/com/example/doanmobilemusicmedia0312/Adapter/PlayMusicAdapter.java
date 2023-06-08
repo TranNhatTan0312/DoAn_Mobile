@@ -9,11 +9,13 @@ import androidx.viewpager2.adapter.FragmentViewHolder;
 import com.example.doanmobilemusicmedia0312.Fragment.PlayingMusicFragment;
 import com.example.doanmobilemusicmedia0312.Fragment.PlayingMusicLyricsFrament;
 import com.example.doanmobilemusicmedia0312.Interface.IToolbarHandler;
+import com.example.doanmobilemusicmedia0312.Model.MusicModel;
 
 import java.util.List;
 
 public class PlayMusicAdapter extends FragmentStateAdapter {
-    String song_id;
+    MusicModel song;
+    boolean isNewSong,isPlaylist;
     IToolbarHandler listener;
     public PlayMusicAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
@@ -23,7 +25,7 @@ public class PlayMusicAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         switch (position){
-            case 0: return new PlayingMusicFragment(song_id);
+            case 0: return new PlayingMusicFragment(song, isNewSong);
             case 1: return new PlayingMusicLyricsFrament();
             default: return null;
         }
@@ -33,8 +35,11 @@ public class PlayMusicAdapter extends FragmentStateAdapter {
     public int getItemCount() {
         return 2;
     }
-    public void setSong(String song_id){ this.song_id = song_id;}
-    public String getSong(){ return song_id; }
+    public void setSong(MusicModel song){ this.song = song;}
+    public void setIsNewSong(boolean isNewSong){ this.isNewSong = isNewSong;}
+    public void setIsPlaylist(boolean isPlaylist){ this.isPlaylist = isPlaylist;}
+
+    public MusicModel getSong(){ return song; }
 
     public void setToolbarListener(IToolbarHandler listener){
         this.listener = listener;

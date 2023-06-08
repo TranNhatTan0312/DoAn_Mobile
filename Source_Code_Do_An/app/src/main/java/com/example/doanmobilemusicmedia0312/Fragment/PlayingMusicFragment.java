@@ -108,18 +108,16 @@ public class PlayingMusicFragment extends Fragment {
             musicService = null;
         }
     };
-
-    MusicModel music;
-    String song_id;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    boolean isNewSong;
+    MusicModel song;
     DocumentReference docRef;
     SharedPreferences pref;
     SharedPreferences.Editor pref_editor;
 
     private static IToolbarHandler toolbarListener;
-    public PlayingMusicFragment(String song_id) {
-
-        this.song_id = song_id;
+    public PlayingMusicFragment(MusicModel song, boolean isNewSong) {
+        this.isNewSong = isNewSong;
+        this.song = song;
     }
 
 
@@ -128,14 +126,13 @@ public class PlayingMusicFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        music = new MusicModel();
         pref = getContext().getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
         isLoop = pref.getBoolean("loop", false);
 
     }
 
-    public void setSongId(String song_id){
-        this.song_id = song_id;
+    public void setSongId(MusicModel song){
+        this.song = song;
     }
 
 
@@ -146,13 +143,15 @@ public class PlayingMusicFragment extends Fragment {
 //        Intent intent = new Intent(getContext(), BackgroundMusicService.class);
 
         addControls(view);
-        if(!getServiceRunning("com.example.doanmobilemusicmedia0312.Service.BackgroundMusicService", getActivity())){
+
+
+        if(!getServiceRunning("com.example.doanmobilemusicmedia0312.Service.BackgroundMusicService", getActivity()) || isNewSong == true){
             startMusic();
         }else{
             Intent intent = new Intent(getContext(), BackgroundMusicService.class);
             getContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
-
         }
+
         addEvents();
         // Inflate the layout for this fragment
         return view;
@@ -203,7 +202,6 @@ public class PlayingMusicFragment extends Fragment {
         playIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if(isPlaying()){
                     pauseSong();
                     playIcon.setImageResource(R.drawable.icon_play_music);
@@ -272,42 +270,11 @@ public class PlayingMusicFragment extends Fragment {
     }
 
     private void startMusic() {
-        docRef = db.collection("songs").document(song_id);
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if(documentSnapshot.exists()){
-                    music.setSinger(documentSnapshot.getString("singer"));
-                    music.setGenre(documentSnapshot.getString("genre"));
-                    music.setLength(documentSnapshot.getString("length"));
-                    music.setSongName(documentSnapshot.getString("name"));
-                    music.setImageUrl(documentSnapshot.getString("cover_image"));
-                    music.setDateRelease(documentSnapshot.getString("date_release"));
-                    music.setSourceUrl(documentSnapshot.getString("url"));
-                    music.setViews(documentSnapshot.getLong("views"));
 
-                    playSong(new ArrayList<MusicModel>(Arrays.asList(music)),0);
-
-
-                }else {
-                    Log.d(TAG, "No such document");
-                }
-            }
-        });
-
+        playSong(new ArrayList<MusicModel>(Arrays.asList(song)),0);
 
 
     }
-
-//    private void updateMusicData() {
-//        Intent intent = new Intent(getContext(), BackgroundMusicService.class);
-//        intent.putExtra("sourceUrl",music.getSourceUrl());
-//        intent.putExtra("loop",isLoop);
-//
-//        getContext().startService(intent);
-//
-//
-//    }
 
     public void setToolbarListener(IToolbarHandler listener){
         this.toolbarListener = listener;
@@ -337,46 +304,96 @@ public class PlayingMusicFragment extends Fragment {
     }
 
     public void pauseSong() {
-        musicService.pause();
+        try{
+            musicService.pause();
+        }catch (Exception ex){
+
+        }
     }
     public void continueSong() {
-        musicService.resume();
+        try{
+            musicService.resume();
+        }catch (Exception ex){
+
+        }
     }
 
     public void previousSong() {
-        musicService.previous();
+        try{
+            musicService.previous();
+        }catch (Exception ex){
+
+        }
     }
 
     public void nextSong() {
-        musicService.next();
+        try{
+            musicService.next();
+        }catch (Exception ex){
+
+        }
     }
 
     public void stopSong() {
-        musicService.stop();
+        try{
+            musicService.stop();
+        }catch (Exception ex){
+
+        }
     }
 
     public void setLooping(boolean isLooping) {
-        musicService.setLooping(isLooping);
+        try{
+            musicService.setLooping(isLooping);
+        }catch (Exception ex){
+
+        }
     }
 
     public void setSeekTo(int position){
-        musicService.seekTo(position);
+        try{
+            musicService.seekTo(position);
+        }catch (Exception ex){
+
+        }
     }
 
     public boolean isPlaying() {
-        return musicService.isPlaying();
+        try{
+            return musicService.isPlaying();
+
+        }catch (Exception ex){
+
+        }
+        return false;
     }
 
     public int getCurrentPosition() {
-        return musicService.getCurrentPosition();
+        try{
+            return musicService.getCurrentPosition();
+
+        }catch (Exception ex){
+
+        }
+        return 0;
     }
 
     public int getDuration() {
-        return musicService.getDuration();
+        try{
+            return musicService.getDuration();
+        }catch (Exception ex){
+
+        }
+        return 0;
     }
 
     public MusicModel getCurrentSong() {
-        return musicService.getCurrentSong();
+        try{
+            return musicService.getCurrentSong();
+        }catch (Exception ex){
+
+        }
+        return null;
     }
 
 
