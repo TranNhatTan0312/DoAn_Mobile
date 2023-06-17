@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.example.doanmobilemusicmedia0312.MainActivity;
+import com.example.doanmobilemusicmedia0312.Model.MusicModel;
 import com.example.doanmobilemusicmedia0312.Model.SearchSongModel;
 import com.example.doanmobilemusicmedia0312.PlayMusicActivity;
 import com.example.doanmobilemusicmedia0312.R;
@@ -20,10 +21,10 @@ import java.util.ArrayList;
 
 public class SearchMusicAdapter extends BaseAdapter {
     Context context;
-    ArrayList<SearchSongModel> data;
+    ArrayList<MusicModel> data;
     LayoutInflater inflter;
 
-    public SearchMusicAdapter(Context context, ArrayList<SearchSongModel> data) {
+    public SearchMusicAdapter(Context context, ArrayList<MusicModel> data) {
         super();
         this.context = context;
         this.data = data;
@@ -55,19 +56,24 @@ public class SearchMusicAdapter extends BaseAdapter {
         // TODO Auto-generated method stub
         view	=	inflter.inflate(R.layout.search_music_item, null);
         ImageView icon	=	(ImageView) view.findViewById(R.id.icon);
-        Picasso.get().load(data.get(i).getImg()).into(icon);
+        Picasso.get().load(data.get(i).getImageUrl()).into(icon);
         icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ///
                 Intent intent = new Intent(context,PlayMusicActivity.class);
 
                 Bundle bundle = new Bundle();
-                bundle.putString("SONG", data.get(i).getSongId());
+                bundle.putSerializable("SONG", data.get(i));
                 bundle.putBoolean("PLAYLIST",false);
                 bundle.putBoolean("NEWSONG",true);
 
                 intent.putExtra("data",bundle);
+
                 context.startActivity(intent);
+
+
+                ///
             }
         });
 

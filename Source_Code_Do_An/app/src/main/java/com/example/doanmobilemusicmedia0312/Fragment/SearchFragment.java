@@ -10,8 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.example.doanmobilemusicmedia0312.Adapter.SearchMusicAdapter;
+import com.example.doanmobilemusicmedia0312.Model.MusicModel;
 import com.example.doanmobilemusicmedia0312.Model.SearchSongModel;
 import com.example.doanmobilemusicmedia0312.R;
 import com.example.doanmobilemusicmedia0312.SearchDetailActivity;
@@ -28,7 +30,7 @@ public class SearchFragment extends Fragment {
     SearchView searchView;
     GridView simpleGrid;
 
-    ArrayList<SearchSongModel> data = new ArrayList<>();
+    ArrayList<MusicModel> data = new ArrayList<>();
 
 
 
@@ -56,14 +58,24 @@ public class SearchFragment extends Fragment {
         simpleGrid = (GridView) view.findViewById(R.id.simpleGridView);
         searchView = view.findViewById(R.id.searchView);
 
+
+
         db.collection("songs").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 if(!queryDocumentSnapshots.isEmpty()){
                     for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()){
-                        SearchSongModel item = new SearchSongModel();
-                        item.setSongId(document.getId());
-                        item.setImg(document.getString("cover_image"));
+
+                        MusicModel item = new MusicModel();
+                        item.setId(document.getId());
+                        item.setImageUrl(document.getString("cover_image"));
+                        item.setSourceUrl(document.getString("url"));
+                        item.setGenre(document.getString("genre"));
+                        item.setLength(document.getString("length"));
+                        item.setSinger(document.getString("singer"));
+                        item.setSongName(document.getString("name"));
+                        item.setDateRelease(document.getString("date_release"));
+
                         data.add(item);
                     }
                     SearchMusicAdapter customAdapter = new SearchMusicAdapter(getContext(), data);
