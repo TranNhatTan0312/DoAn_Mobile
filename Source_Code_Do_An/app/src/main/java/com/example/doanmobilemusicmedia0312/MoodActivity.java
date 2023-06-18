@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 import com.example.doanmobilemusicmedia0312.Adapter.MoodAdapter;
 import com.example.doanmobilemusicmedia0312.Model.MoodModel;
+import com.example.doanmobilemusicmedia0312.Model.MusicModel;
 import com.example.doanmobilemusicmedia0312.Model.SearchSongModel;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -27,7 +28,7 @@ public class MoodActivity extends AppCompatActivity {
     RecyclerView rcyMood;
     ImageView back;
 
-    ArrayList<MoodModel> SongOfMoodList;
+    ArrayList<MusicModel> SongOfMoodList;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -60,11 +61,15 @@ public class MoodActivity extends AppCompatActivity {
                     if(!queryDocumentSnapshots.isEmpty()){
                         for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
                             if (Objects.equals(document.getString("concert"), concert)) {
-                                MoodModel item = new MoodModel();
+                                MusicModel item = new MusicModel();
                                 item.setId(document.getId());
-                                item.setImg(document.getString("cover_image"));
-                                item.setMusicName(document.getString("name"));
-                                item.setMusicSinger(document.getString("singer"));
+                                item.setImageUrl(document.getString("cover_image"));
+                                item.setSourceUrl(document.getString("url"));
+                                item.setGenre(document.getString("genre"));
+                                item.setLength(document.getString("length"));
+                                item.setSinger(document.getString("singer"));
+                                item.setSongName(document.getString("name"));
+                                item.setDateRelease(document.getString("date_release"));
                                 SongOfMoodList.add(item);
                             }
                         }
@@ -91,11 +96,15 @@ public class MoodActivity extends AppCompatActivity {
                     if(!queryDocumentSnapshots.isEmpty()){
                         for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
                             if (Objects.equals(document.getString("mood"), mood)) {
-                                MoodModel item = new MoodModel();
+                                MusicModel item = new MusicModel();
                                 item.setId(document.getId());
-                                item.setImg(document.getString("cover_image"));
-                                item.setMusicName(document.getString("name"));
-                                item.setMusicSinger(document.getString("singer"));
+                                item.setImageUrl(document.getString("cover_image"));
+                                item.setSourceUrl(document.getString("url"));
+                                item.setGenre(document.getString("genre"));
+                                item.setLength(document.getString("length"));
+                                item.setSinger(document.getString("singer"));
+                                item.setSongName(document.getString("name"));
+                                item.setDateRelease(document.getString("date_release"));
                                 SongOfMoodList.add(item);
                             }
                         }
@@ -122,11 +131,15 @@ public class MoodActivity extends AppCompatActivity {
                     if(!queryDocumentSnapshots.isEmpty()){
                         for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
                             if (Objects.equals(document.getString("singer"), singer)) {
-                                MoodModel item = new MoodModel();
+                                MusicModel item = new MusicModel();
                                 item.setId(document.getId());
-                                item.setImg(document.getString("cover_image"));
-                                item.setMusicName(document.getString("name"));
-                                item.setMusicSinger(document.getString("singer"));
+                                item.setImageUrl(document.getString("cover_image"));
+                                item.setSourceUrl(document.getString("url"));
+                                item.setGenre(document.getString("genre"));
+                                item.setLength(document.getString("length"));
+                                item.setSinger(document.getString("singer"));
+                                item.setSongName(document.getString("name"));
+                                item.setDateRelease(document.getString("date_release"));
                                 SongOfMoodList.add(item);
                             }
                         }
@@ -134,7 +147,7 @@ public class MoodActivity extends AppCompatActivity {
                         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(MoodActivity.this);
                         rcyMood.setLayoutManager(layoutManager);
 
-                        MoodAdapter customAdapter = new MoodAdapter(getApplicationContext(), SongOfMoodList);
+                        MoodAdapter customAdapter = new MoodAdapter(MoodActivity.this, SongOfMoodList);
 
                         rcyMood.setAdapter(customAdapter);
                     }

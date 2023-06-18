@@ -3,6 +3,7 @@ package com.example.doanmobilemusicmedia0312.Model;
 import java.io.Serializable;
 
 public class MusicModel implements Serializable {
+    private String id;
     private String imageUrl;
     private String dateRelease;
     private String genre;
@@ -17,7 +18,8 @@ public class MusicModel implements Serializable {
 
     }
 
-    public MusicModel(String imageUrl, String dateRelease, String genre, String length, String songName, String singer, String sourceUrl, int views) {
+    public MusicModel(String id, String imageUrl, String dateRelease, String genre, String length, String songName, String singer, String sourceUrl, int views) {
+        this.id = id;
         this.imageUrl = imageUrl;
         this.dateRelease = dateRelease;
         this.genre = genre;
@@ -27,6 +29,13 @@ public class MusicModel implements Serializable {
         this.sourceUrl = sourceUrl;
         this.views = views;
     }
+
+
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;    }
 
 
     public String getImageUrl() {

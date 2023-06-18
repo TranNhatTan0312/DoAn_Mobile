@@ -139,7 +139,6 @@ public class HomeFragment extends Fragment {
                 intent.putExtra("mood","romance" );
                 intent.putExtra("type","mood");
 
-
                 startActivity(intent);
 
             }

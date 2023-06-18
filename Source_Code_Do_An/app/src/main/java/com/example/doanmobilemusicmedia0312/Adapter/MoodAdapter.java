@@ -7,7 +7,9 @@
 package com.example.doanmobilemusicmedia0312.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doanmobilemusicmedia0312.Model.MoodModel;
+import com.example.doanmobilemusicmedia0312.Model.MusicModel;
+import com.example.doanmobilemusicmedia0312.PlayMusicActivity;
 import com.example.doanmobilemusicmedia0312.R;
 
 import java.security.AccessControlContext;
@@ -26,10 +30,10 @@ import java.util.ArrayList;
 public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.MyHolder> {
 
     Context context;
-    ArrayList<MoodModel> arrayList;
+    ArrayList<MusicModel> arrayList;
     LayoutInflater layoutInflater;
 
-    public MoodAdapter(Context context, ArrayList<MoodModel> arrayList) {
+    public MoodAdapter(Context context, ArrayList<MusicModel> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
         layoutInflater = LayoutInflater.from(context);
@@ -45,11 +49,11 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.MyHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
-        MoodModel moodModelClass = arrayList.get(position);
-        holder.musicName.setText(moodModelClass.getMusicName());
-        holder.musicSinger.setText(String.valueOf(moodModelClass.getMusicSinger()));
-        holder.img.setImageURI(Uri.parse(moodModelClass.getImg()));
-        holder.id = moodModelClass.getId();
+        MusicModel musicModelClass = arrayList.get(position);
+        holder.musicName.setText(musicModelClass.getSongName());
+        holder.musicSinger.setText(String.valueOf(musicModelClass.getSinger()));
+        holder.img.setImageURI(Uri.parse(musicModelClass.getImageUrl()));
+        holder.setSong(musicModelClass);
     }
 
     @Override
@@ -57,10 +61,12 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.MyHolder> {
         return arrayList.size();
     }
 
-    public class MyHolder extends RecyclerView.ViewHolder {
+    public class MyHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView musicName, musicSinger;
         ImageView img;
-        String id;
+        MusicModel song;
+
+        public void setSong(MusicModel song) { this.song = song;}
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,6 +74,19 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.MyHolder> {
             musicSinger = itemView.findViewById(R.id.txt2);
             img = itemView.findViewById(R.id.img);
 
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(context, PlayMusicActivity.class);
+
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("PLAYLIST",true);
+            bundle.putSerializable("SONG",this.song);
+            bundle.putBoolean("NEWSONG",true);
+
+            intent.putExtra("data",bundle);
+            context.startActivity(intent);
         }
     }
 }
