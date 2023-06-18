@@ -64,6 +64,8 @@ public class SearchFragment extends Fragment {
                         SearchSongModel item = new SearchSongModel();
                         item.setSongId(document.getId());
                         item.setImg(document.getString("cover_image"));
+                        item.setMusicName(document.getString("name"));
+                        item.setMusicNum(document.getString("singer"));
                         data.add(item);
                     }
                     SearchMusicAdapter customAdapter = new SearchMusicAdapter(getContext(), data);
