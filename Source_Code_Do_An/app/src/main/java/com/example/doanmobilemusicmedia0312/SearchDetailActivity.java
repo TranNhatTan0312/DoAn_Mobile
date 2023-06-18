@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.doanmobilemusicmedia0312.Adapter.SearchMusicDetailAdapter;
+import com.example.doanmobilemusicmedia0312.Model.MusicModel;
 import com.example.doanmobilemusicmedia0312.Model.SearchSongModel;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
@@ -22,11 +23,11 @@ import java.util.ArrayList;
 public class SearchDetailActivity extends AppCompatActivity {
     SearchView searchView;
     RecyclerView recyclerView;
-    ArrayList<SearchSongModel> arrayList = new ArrayList<>();
-    ArrayList<SearchSongModel> songList = new ArrayList<>();
+    ArrayList<MusicModel> arrayList = new ArrayList<>();
+    ArrayList<MusicModel> songList = new ArrayList<>();
     ImageView back;
-    ArrayList<SearchSongModel> searchList;
-    ArrayList<SearchSongModel> songSearchList;
+    ArrayList<MusicModel> searchList;
+    ArrayList<MusicModel> songSearchList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,11 +54,15 @@ public class SearchDetailActivity extends AppCompatActivity {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 if (!queryDocumentSnapshots.isEmpty()) {
                     for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
-                        SearchSongModel item = new SearchSongModel();
-                        item.setSongId(document.getId());
-                        item.setImg(document.getString("cover_image"));
-                        item.setMusicName(document.getString("name"));
-                        item.setMusicNum(document.getString("singer"));
+                        MusicModel item = new MusicModel();
+                        item.setId(document.getId());
+                        item.setImageUrl(document.getString("cover_image"));
+                        item.setSourceUrl(document.getString("url"));
+                        item.setGenre(document.getString("genre"));
+                        item.setLength(document.getString("length"));
+                        item.setSinger(document.getString("singer"));
+                        item.setSongName(document.getString("name"));
+                        item.setDateRelease(document.getString("date_release"));
                         arrayList.add(item);
                     }
 
@@ -75,11 +80,15 @@ public class SearchDetailActivity extends AppCompatActivity {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 if (!queryDocumentSnapshots.isEmpty()) {
                     for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
-                        SearchSongModel item = new SearchSongModel();
-                        item.setSongId(document.getId());
-                        item.setImg(document.getString("cover_image"));
-                        item.setMusicName(document.getString("name"));
-                        item.setMusicNum(document.getString("singer"));
+                        MusicModel item = new MusicModel();
+                        item.setId(document.getId());
+                        item.setImageUrl(document.getString("cover_image"));
+                        item.setSourceUrl(document.getString("url"));
+                        item.setGenre(document.getString("genre"));
+                        item.setLength(document.getString("length"));
+                        item.setSinger(document.getString("singer"));
+                        item.setSongName(document.getString("name"));
+                        item.setDateRelease(document.getString("date_release"));
                         songList.add(item);
                     }
                 }
@@ -98,12 +107,17 @@ public class SearchDetailActivity extends AppCompatActivity {
                     songSearchList = new ArrayList<>(arrayList);
                 } else {
                     for (int i = 0; i < songList.size(); i++) {
-                        if (songList.get(i).getMusicName().toUpperCase().contains(newText.toUpperCase())) {
-                            SearchSongModel modelClass = new SearchSongModel();
-                            modelClass.setMusicName(songList.get(i).getMusicName());
-                            modelClass.setMusicNum(songList.get(i).getMusicNum());
-                            modelClass.setImg(songList.get(i).getImg());
-                            songSearchList.add(modelClass);
+                        if (songList.get(i).getSongName().toUpperCase().contains(newText.toUpperCase())) {
+                            MusicModel item = new MusicModel();
+                            item.setId(songList.get(i).getId());
+                            item.setImageUrl(songList.get(i).getImageUrl());
+                            item.setSourceUrl(songList.get(i).getSourceUrl());
+                            item.setGenre(songList.get(i).getGenre());
+                            item.setLength(songList.get(i).getLength());
+                            item.setSinger(songList.get(i).getSinger());
+                            item.setSongName(songList.get(i).getSongName());
+                            item.setDateRelease(songList.get(i).getDateRelease());
+                            songList.add(item);
                         }
                     }
                 }

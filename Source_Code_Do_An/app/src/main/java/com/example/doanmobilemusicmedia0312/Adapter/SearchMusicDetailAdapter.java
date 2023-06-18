@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.doanmobilemusicmedia0312.Model.MusicModel;
 import com.example.doanmobilemusicmedia0312.Model.SearchSongModel;
 import com.example.doanmobilemusicmedia0312.PlayMusicActivity;
 import com.example.doanmobilemusicmedia0312.R;
@@ -36,11 +37,11 @@ import com.google.firebase.firestore.QuerySnapshot;
 public class SearchMusicDetailAdapter extends RecyclerView.Adapter<SearchMusicDetailAdapter.MyHolder> {
 
     Context context;
-    ArrayList<SearchSongModel> arrayList;
+    ArrayList<MusicModel> arrayList;
     LayoutInflater layoutInflater;
 
 
-    public SearchMusicDetailAdapter(Context context, ArrayList<SearchSongModel> arrayList) {
+    public SearchMusicDetailAdapter(Context context, ArrayList<MusicModel> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
         layoutInflater = LayoutInflater.from(context);
@@ -75,8 +76,8 @@ public class SearchMusicDetailAdapter extends RecyclerView.Adapter<SearchMusicDe
                         FirebaseFirestore db = FirebaseFirestore.getInstance();
                         CollectionReference searchHistoryRef = db.collection("search_history");
 
-                        SearchSongModel clickedItem = arrayList.get(clickedPosition);
-                        Query query = searchHistoryRef.whereEqualTo("name", clickedItem.getMusicName());
+                        MusicModel clickedItem = arrayList.get(clickedPosition);
+                        Query query = searchHistoryRef.whereEqualTo("name", clickedItem.getSongName());
                         query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -108,11 +109,11 @@ public class SearchMusicDetailAdapter extends RecyclerView.Adapter<SearchMusicDe
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
-        SearchSongModel searchModelClass = arrayList.get(position);
-        holder.musicName.setText(searchModelClass.getMusicName());
-        holder.musicNum.setText(String.valueOf(searchModelClass.getMusicNum()));
+        MusicModel searchModelClass = arrayList.get(position);
+        holder.musicName.setText(searchModelClass.getSongName());
+        holder.musicNum.setText(String.valueOf(searchModelClass.getSinger()));
         Glide.with(context)
-                .load(searchModelClass.getImg())
+                .load(searchModelClass.getImageUrl())
                 .into(holder.img);
 
 
@@ -125,15 +126,21 @@ public class SearchMusicDetailAdapter extends RecyclerView.Adapter<SearchMusicDe
                 CollectionReference searchHistoryRef = db.collection("search_history");
 
                 // Kiểm tra xem bài hát đã tồn tại trong search_history chưa
-                Query query = searchHistoryRef.whereEqualTo("name", searchModelClass.getMusicName());
+                Query query = searchHistoryRef.whereEqualTo("name", searchModelClass.getSongName());
                 query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         if (queryDocumentSnapshots.isEmpty()) {
                             Map<String, Object> songData = new HashMap<>();
-                            songData.put("name", searchModelClass.getMusicName());
-                            songData.put("singer", searchModelClass.getMusicNum());
-                            songData.put("cover_image", searchModelClass.getImg());
+
+                            songData.put("name", searchModelClass.getSongName());
+                            songData.put("singer", searchModelClass.getSinger());
+                            songData.put("url", searchModelClass.getSourceUrl());
+                            songData.put("cover_image", searchModelClass.getImageUrl());
+                            songData.put("genre", searchModelClass.getGenre());
+                            songData.put("length", searchModelClass.getLength());
+                            songData.put("date_release", searchModelClass.getDateRelease());
+
                             System.out.println("haha");
 
                             searchHistoryRef.add(songData)
@@ -152,20 +159,20 @@ public class SearchMusicDetailAdapter extends RecyclerView.Adapter<SearchMusicDe
                     }
                 });
 
-//                // Tạo intent để chuyển đến trang phát nhạc
-//                Intent intent = new Intent(context, PlayMusicActivity.class);
-//
-//                // Tạo bundle để truyền dữ liệu bài hát
-//                Bundle bundle = new Bundle();
-//                bundle.putString("SONG", searchModelClass.getSongId());
-//                bundle.putBoolean("PLAYLIST", false);
-//                bundle.putBoolean("NEWSONG", true);
-//
-//                // Đặt bundle làm dữ liệu cho intent
-//                intent.putExtra("data", bundle);
-//
-//                // Chạy intent để chuyển đến trang phát nhạc
-//                context.startActivity(intent);
+                // Tạo intent để chuyển đến trang phát nhạc
+                Intent intent = new Intent(context, PlayMusicActivity.class);
+
+                // Tạo bundle để truyền dữ liệu bài hát
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("SONG", searchModelClass);
+                bundle.putBoolean("PLAYLIST", false);
+                bundle.putBoolean("NEWSONG", true);
+
+                // Đặt bundle làm dữ liệu cho intent
+                intent.putExtra("data", bundle);
+
+                // Chạy intent để chuyển đến trang phát nhạc
+                context.startActivity(intent);
             }
         });
 
