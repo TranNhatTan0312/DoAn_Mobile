@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements IMusicActivity {
         IntentFilter filter = new IntentFilter(MusicBroadcastReceiver.ACTION_SONG_CHANGED);
         registerReceiver(receiver, filter);
 
+//        this.deleteDatabase("s2playdb");
 
 
         addBottomNavigation();
@@ -88,14 +89,18 @@ public class MainActivity extends AppCompatActivity implements IMusicActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(!getServiceRunning("com.example.doanmobilemusicmedia0312.Service.BackgroundMusicService", this)){
+        if(!getServiceRunning("com.example.doanmobilemusicmedia0312.Service.BackgroundMusicService")){
             music_status_bar.setVisibility(View.GONE);
         }else{
-            music_status_bar.setVisibility(View.VISIBLE);
             Intent intent = new Intent(this, BackgroundMusicService.class);
             bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
-
-
+            try{
+//                if(musicService.isPlaying()){
+                    music_status_bar.setVisibility(View.VISIBLE);
+//                }
+            }catch(Exception ex){
+                music_status_bar.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -139,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements IMusicActivity {
         });
     }
 
-    private boolean getServiceRunning(String className, Context context) {
+    private boolean getServiceRunning(String className) {
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         ArrayList<ActivityManager.RunningServiceInfo> runningServiceInfo = (ArrayList<ActivityManager.RunningServiceInfo>) manager.getRunningServices(30);
         for (int i = 0; i < runningServiceInfo.size(); i++){

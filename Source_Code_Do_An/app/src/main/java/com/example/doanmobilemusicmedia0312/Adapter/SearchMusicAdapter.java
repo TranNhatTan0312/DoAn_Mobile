@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 
 import com.example.doanmobilemusicmedia0312.MainActivity;
+import com.example.doanmobilemusicmedia0312.Model.MusicModel;
 import com.example.doanmobilemusicmedia0312.Model.SearchSongModel;
 import com.example.doanmobilemusicmedia0312.PlayMusicActivity;
 import com.example.doanmobilemusicmedia0312.R;
@@ -31,10 +32,10 @@ import java.util.Map;
 
 public class SearchMusicAdapter extends BaseAdapter {
     Context context;
-    ArrayList<SearchSongModel> data;
+    ArrayList<MusicModel> data;
     LayoutInflater inflter;
 
-    public SearchMusicAdapter(Context context, ArrayList<SearchSongModel> data) {
+    public SearchMusicAdapter(Context context, ArrayList<MusicModel> data) {
         super();
         this.context = context;
         this.data = data;
@@ -101,12 +102,16 @@ public class SearchMusicAdapter extends BaseAdapter {
                 System.out.println("Song ID: " + songId);
                 Intent intent = new Intent(context,PlayMusicActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("SONG", data.get(i).getSongId());
+                bundle.putSerializable("SONG", data.get(i));
                 bundle.putBoolean("PLAYLIST",false);
                 bundle.putBoolean("NEWSONG",true);
 
                 intent.putExtra("data",bundle);
+
                 context.startActivity(intent);
+
+
+                ///
             }
         });
 
