@@ -117,7 +117,7 @@ public class SearchDetailActivity extends AppCompatActivity {
                             item.setSinger(songList.get(i).getSinger());
                             item.setSongName(songList.get(i).getSongName());
                             item.setDateRelease(songList.get(i).getDateRelease());
-                            songList.add(item);
+                            songSearchList.add(item);
                         }
                     }
                 }
