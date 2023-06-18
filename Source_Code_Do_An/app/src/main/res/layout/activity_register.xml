@@ -1,33 +1,22 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark">
+    android:background="@color/dark"
+    android:orientation="vertical">
 
 
     <LinearLayout
         android:id="@+id/LogoandBack"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
+        android:layout_height="120dp"
+
         >
 
         <ImageView
-            android:id="@+id/back_setting"
-            android:layout_width="30dp"
-            android:layout_height="100dp"
-            android:layout_centerVertical="true"
-            android:contentDescription="back_button"
-            android:src="@drawable/back_image_button_anim"
-
-            />
-
-        <ImageView
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
-            android:paddingLe="20dp"
             android:scaleType="centerCrop"
-
             android:src="@drawable/logo" />
 
     </LinearLayout>
@@ -38,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/Fullname"
         android:layout_marginBottom="50dp"
-        android:text="Register"
+        android:text="Sign Up"
         android:textSize="35dp"
         android:textColor="@color/my_white_4"
         android:fontFamily="@font/satoshi_bold"
@@ -53,7 +42,6 @@
         android:layout_marginRight="40dp"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/satoshi_medium"
-        android:gravityHint="center"
         android:hint="Full name"
         android:textColorHint="@color/my_white_6"
         android:textSize="17dp">
@@ -67,7 +55,6 @@
         android:layout_marginRight="40dp"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/satoshi_medium"
-        android:gravityHint="center"
         android:hint="Email"
         android:textColorHint="@color/my_white_6"
         android:textSize="17dp">
@@ -82,7 +69,6 @@
         android:layout_marginRight="40dp"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/satoshi_medium"
-        android:gravityHint="center"
         android:hint="Password"
 
         android:textColorHint="@color/my_white_6"
@@ -98,13 +84,13 @@
         android:backgroundTint="@color/my_orange_2"
         android:fontFamily="@font/satoshi_bold"
         android:layout_marginBottom="20dp"
-        android:text="Sign In"
+        android:text="Sign Up"
         android:textSize="18dp"
         android:textColor="@color/my_white_5"
         android:textAllCaps="false"
         android:layout_above="@+id/textview"
         android:layout_centerHorizontal="true"
-
+        android:layout_gravity="center_horizontal"
         />
     <View
         android:id="@+id/textview"
@@ -116,7 +102,9 @@
         android:textSize="20sp"
         android:textAllCaps="true"
         android:fontFamily="@font/satoshi_medium"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center_horizontal"
+        />
 
     <TextView
         android:id="@+id/Register"
@@ -126,12 +114,12 @@
         android:textSize="17dp"
         android:text="Have an account? Sign In now"
         android:textColor="@color/my_white_6"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
         android:fontFamily="@font/satoshi_medium"
-        android:layout_marginBottom="160dp"
-        android:layout_alignParentBottom="true"/>
+       />
 
 
-</RelativeLayout>
+</LinearLayout>
 
 
 

@@ -22,7 +22,11 @@ public class SearchDetailActivity extends AppCompatActivity {
     ArrayList<SearchSongModel> searchList;
     String [] musicList = new String[]{"Havana", "Let Me Love You", "Someone Like You","Treat you better", "There for you"};
     String[] musicNum = new String[]{"Camila Cabello ", "DJ Snake", "Andele", "Treat You Better", "Martin Garrix"};
-    int[] imgList=new int[]{R.drawable.img_1,R.drawable.img_2,R.drawable.img_3,R.drawable.img_4,R.drawable.img_5};
+    String[] imgList=new String[]{"https://firebasestorage.googleapis.com/v0/b/s2play.appspot.com/o/song_cover_images%2Flisa-21.jpeg?alt=media&token=5756e692-4972-489f-8771-2dc18a62d2a3",
+    "https://firebasestorage.googleapis.com/v0/b/s2play.appspot.com/o/song_cover_images%2Flisa-21.jpeg?alt=media&token=5756e692-4972-489f-8771-2dc18a62d2a3",
+    "https://firebasestorage.googleapis.com/v0/b/s2play.appspot.com/o/song_cover_images%2Flisa-21.jpeg?alt=media&token=5756e692-4972-489f-8771-2dc18a62d2a3",
+    "https://firebasestorage.googleapis.com/v0/b/s2play.appspot.com/o/song_cover_images%2Flisa-21.jpeg?alt=media&token=5756e692-4972-489f-8771-2dc18a62d2a3",
+    "https://firebasestorage.googleapis.com/v0/b/s2play.appspot.com/o/song_cover_images%2Flisa-21.jpeg?alt=media&token=5756e692-4972-489f-8771-2dc18a62d2a3"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

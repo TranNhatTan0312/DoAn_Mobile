@@ -19,7 +19,7 @@ public class IntroduceActivity extends AppCompatActivity {
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(),Introduce2Activity.class);
                 startActivity(intent);
                 finish();
             }

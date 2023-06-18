@@ -1,31 +1,21 @@
 package com.example.doanmobilemusicmedia0312.Adapter;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.NumberPicker;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.adapter.FragmentViewHolder;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.doanmobilemusicmedia0312.Fragment.PlayingMusicFragment;
 import com.example.doanmobilemusicmedia0312.Fragment.PlayingMusicLyricsFrament;
 import com.example.doanmobilemusicmedia0312.Interface.IToolbarHandler;
-import com.example.doanmobilemusicmedia0312.R;
+import com.example.doanmobilemusicmedia0312.Model.MusicModel;
 
 import java.util.List;
 
 public class PlayMusicAdapter extends FragmentStateAdapter {
-
+    MusicModel song;
+    boolean isNewSong,isPlaylist;
     IToolbarHandler listener;
     public PlayMusicAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
@@ -35,7 +25,7 @@ public class PlayMusicAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         switch (position){
-            case 0: return new PlayingMusicFragment();
+            case 0: return new PlayingMusicFragment(song, isNewSong);
             case 1: return new PlayingMusicLyricsFrament();
             default: return null;
         }
@@ -45,6 +35,11 @@ public class PlayMusicAdapter extends FragmentStateAdapter {
     public int getItemCount() {
         return 2;
     }
+    public void setSong(MusicModel song){ this.song = song;}
+    public void setIsNewSong(boolean isNewSong){ this.isNewSong = isNewSong;}
+    public void setIsPlaylist(boolean isPlaylist){ this.isPlaylist = isPlaylist;}
+
+    public MusicModel getSong(){ return song; }
 
     public void setToolbarListener(IToolbarHandler listener){
         this.listener = listener;
@@ -55,6 +50,7 @@ public class PlayMusicAdapter extends FragmentStateAdapter {
         super.onBindViewHolder(holder, position, payloads);
 
         Fragment fragment = this.createFragment(position);
+
         if (fragment instanceof PlayingMusicFragment) {
             ((PlayingMusicFragment) fragment).setToolbarListener(listener);
         }else if (fragment instanceof PlayingMusicLyricsFrament) {

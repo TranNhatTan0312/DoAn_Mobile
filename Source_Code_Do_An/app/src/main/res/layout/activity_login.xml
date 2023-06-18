@@ -25,7 +25,7 @@
             android:layout_width="300dp"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
-            android:paddingLe="20dp"
+            android:padding="20dp"
             android:scaleType="centerCrop"
 
             android:src="@drawable/logo" />
@@ -54,7 +54,7 @@
         android:layout_marginRight="40dp"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/satoshi_medium"
-        android:gravityHint="center"
+
         android:hint="Enter Username or Email"
         android:textColorHint="@color/my_white_6"
         android:textSize="17dp">
@@ -69,7 +69,7 @@
         android:layout_marginRight="40dp"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/satoshi_medium"
-        android:gravityHint="center"
+
         android:hint="Password"
 
         android:textColorHint="@color/my_white_6"

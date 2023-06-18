@@ -4,12 +4,10 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.doanmobilemusicmedia0312.Interface.IToolbarHandler;
 import com.example.doanmobilemusicmedia0312.R;
