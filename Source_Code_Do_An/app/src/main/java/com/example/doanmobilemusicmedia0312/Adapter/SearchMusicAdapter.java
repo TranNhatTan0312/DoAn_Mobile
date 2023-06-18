@@ -67,22 +67,26 @@ public class SearchMusicAdapter extends BaseAdapter {
         // TODO Auto-generated method stub
         view	=	inflter.inflate(R.layout.search_music_item, null);
         ImageView icon	=	(ImageView) view.findViewById(R.id.icon);
-        Picasso.get().load(data.get(i).getImg()).into(icon);
-        SearchSongModel song = data.get(i);
+        Picasso.get().load(data.get(i).getImageUrl()).into(icon);
+        MusicModel song = data.get(i);
         icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 CollectionReference searchHistoryRef = db.collection("search_history");
-                Query query = searchHistoryRef.whereEqualTo("name", song.getMusicName());
+                Query query = searchHistoryRef.whereEqualTo("name", song.getSongName());
                 query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         if (queryDocumentSnapshots.isEmpty()) {
                             Map<String, Object> songData = new HashMap<>();
-                            songData.put("name", song.getMusicName());
-                            songData.put("singer", song.getMusicNum());
-                            songData.put("cover_image", song.getImg());
+                            songData.put("name", song.getSongName());
+                            songData.put("singer", song.getSinger());
+                            songData.put("url", song.getSourceUrl());
+                            songData.put("cover_image", song.getImageUrl());
+                            songData.put("genre", song.getGenre());
+                            songData.put("length", song.getLength());
+                            songData.put("date_release", song.getDateRelease());
 
                             searchHistoryRef.add(songData)
                                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -98,8 +102,9 @@ public class SearchMusicAdapter extends BaseAdapter {
                         }
                     }
                 });
-                String songId = song.getSongId();
+                String songId = song.getId();
                 System.out.println("Song ID: " + songId);
+
                 Intent intent = new Intent(context,PlayMusicActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("SONG", data.get(i));
