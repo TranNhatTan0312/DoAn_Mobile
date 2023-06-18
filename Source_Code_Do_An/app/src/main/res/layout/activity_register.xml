@@ -33,24 +33,25 @@
         android:fontFamily="@font/satoshi_bold"
         android:gravity="center_horizontal">
     </TextView>
+
     <EditText
-        android:id="@+id/Fullname"
+        android:id="@+id/SignUP_Fullname"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_above="@+id/Username"
+        android:layout_above="@+id/SignUP_EMail"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/satoshi_medium"
         android:hint="Full name"
         android:textColorHint="@color/my_white_6"
-        android:textSize="17dp">
-    </EditText>
+        android:textSize="17dp"></EditText>
+
     <EditText
-        android:id="@+id/Username"
+        android:id="@+id/SignUP_EMail"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_above="@+id/Password"
+        android:layout_above="@+id/SignUp_Password"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="20dp"
@@ -61,7 +62,7 @@
     </EditText>
 
     <EditText
-        android:id="@+id/Password"
+        android:id="@+id/SignUp_Password"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_above="@+id/btn_Register"
@@ -107,7 +108,7 @@
         />
 
     <TextView
-        android:id="@+id/Register"
+        android:id="@+id/BackToLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"

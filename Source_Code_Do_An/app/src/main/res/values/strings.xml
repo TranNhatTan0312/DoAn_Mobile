@@ -2,7 +2,7 @@
     <string name="play_music">Now playing</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="app_name">My Application</string>
+    <string name="app_name">S2PLAY</string>
     <string name="quote">Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit. Sagittis enim\n purus sed phasellus. Cursus ornare id\nscelerisque aliquam.</string>
     <!--    Đây là phần của Tú-->
     <string name="first_fragment_label">First Fragment</string>
