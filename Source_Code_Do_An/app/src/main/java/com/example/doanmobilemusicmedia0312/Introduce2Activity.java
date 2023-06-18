@@ -25,6 +25,7 @@ public class Introduce2Activity extends AppCompatActivity {
                 finish();
             }
         });
+
         btn_sup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

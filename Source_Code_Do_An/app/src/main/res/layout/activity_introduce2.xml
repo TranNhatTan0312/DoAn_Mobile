@@ -49,18 +49,19 @@
         android:layout_marginBottom="50dp"
         android:layout_above="@+id/Lisa1"
         >
+
         <Button
             android:id="@+id/btn_sIn"
             android:layout_width="150dp"
             android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
             android:background="@drawable/rounded_button"
             android:backgroundTint="@color/my_orange_2"
             android:fontFamily="@font/satoshi_bold"
             android:text="Sign In"
-            android:textSize="18dp"
-            android:textColor="@color/my_white_5"
             android:textAllCaps="false"
-            android:layout_centerHorizontal="true"/>
+            android:textColor="@color/my_white_5"
+            android:textSize="18dp" />
 
         <Button
             android:id="@+id/btn_sUp"
@@ -69,7 +70,7 @@
             android:background="@drawable/rounded_button"
             android:backgroundTint="@color/my_orange_2"
             android:fontFamily="@font/satoshi_bold"
-            android:text="Sign In"
+            android:text="Sign Up"
             android:textSize="18dp"
             android:textColor="@color/my_white_5"
             android:textAllCaps="false"

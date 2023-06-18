@@ -82,7 +82,7 @@ public class RegisterActivity extends AppCompatActivity {
         fullname = findViewById(R.id.SignUP_Fullname);
         emailname = findViewById(R.id.SignUP_EMail);
         password = findViewById(R.id.SignUp_Password);
-        signupBtn = findViewById(R.id.btn_SignIn);
+        signupBtn = findViewById(R.id.btn_Register);
         SignUp = findViewById(R.id.BackToLogin);
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,13 +103,14 @@ public class RegisterActivity extends AppCompatActivity {
                 Password = password.getText().toString();
 
                 // validating the text fields if empty or not.
-                if (TextUtils.isEmpty(emailName)) {
-                    emailname.setError("Please enter full name");
-                }  else if (TextUtils.isEmpty(fullName)) {
-                    fullname.setError("Please enter full name");
+                if (TextUtils.isEmpty(fullName)) {
+                    fullname.setError("Full name phải trên 6 ký tự");
                 }
-                else if (TextUtils.isEmpty(Password)) {
-                    password.setError("Please enter password");
+                if(Validate.ValidateGmail(emailName) == false){
+                    fullname.setError("Email phải trên 6 ký tự");
+                }
+                if(Validate.ValidatePassword(Password) == false){
+                    fullname.setError("Password phải trên 6 ký tự");;
                 }
                 else {
                     // calling method to add data to Firebase Firestore.
@@ -127,7 +128,7 @@ public class RegisterActivity extends AppCompatActivity {
         CollectionReference dbUsers = db.collection("users");
 
         // adding our data to our users object class.
-        Users users1 = new Users(emailName,fullName ,Password);
+        Users users1 = new Users(fullName, emailName,Password);
         Map<String, Object> user = new HashMap<>();
         user.put("full_name", users1.getFullName());
         user.put("email", users1.getEmail());

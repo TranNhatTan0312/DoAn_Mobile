@@ -47,13 +47,10 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
         db = FirebaseFirestore.getInstance();
         sharedPreferences  = getSharedPreferences("users", Context.MODE_PRIVATE);
-        editUsername = findViewById(R.id.Username);
-
-        editPassword = findViewById(R.id.Login_Password);
-
+        editUsername = findViewById(R.id.Get_Gmail);
+        editPassword = findViewById(R.id.get_Password);
         buttonlogin = findViewById(R.id.btn_SignIn);
         Register = findViewById(R.id.Register);
 
@@ -78,8 +75,8 @@ public class SignInActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(userName)) {
                     editUsername.setError("Please enter User Name");
                 }
-                if(Validate.ValidateUsername(userName) == false){
-                    Toast.makeText(getApplicationContext(),"Username phải là chữ và phải trên 6 ký tự",Toast.LENGTH_LONG).show();
+                if(Validate.ValidateGmail(userName) == false){
+                    Toast.makeText(getApplicationContext(),"Username phải trên 6 ký tự",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(Validate.ValidatePassword(Password) == false){
@@ -90,7 +87,7 @@ public class SignInActivity extends AppCompatActivity {
                     editPassword.setError("Please enter password");
                 }
                 db.collection("users")
-                        .whereEqualTo("username",userName)
+                        .whereEqualTo("email",userName)
                         .whereEqualTo("password", Encrypt.HashPasswordMd5(Password))
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
