@@ -136,13 +136,13 @@ public class PlayingMusicFragment extends Fragment implements IMusicActivity {
     DocumentReference docRef;
     SharedPreferences pref;
     SharedPreferences.Editor pref_editor;
-
+    ArrayList<MusicModel> playlist;
     private static IToolbarHandler toolbarListener;
-    public PlayingMusicFragment(MusicModel song, boolean isNewSong) {
+    public PlayingMusicFragment(MusicModel song, boolean isNewSong, ArrayList<MusicModel> playlist ) {
         this.isNewSong = isNewSong;
         this.song = song;
+        this.playlist = playlist;
     }
-
 
 
     @Override
@@ -157,7 +157,6 @@ public class PlayingMusicFragment extends Fragment implements IMusicActivity {
     public void setSongId(MusicModel song){
         this.song = song;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -296,8 +295,10 @@ public class PlayingMusicFragment extends Fragment implements IMusicActivity {
     }
 
     private void startMusic() {
-
-        playSong(new ArrayList<MusicModel>(Arrays.asList(song)),0);
+        if (playlist == null)
+            playSong(new ArrayList<MusicModel>(Arrays.asList(song)),0);
+        else
+            playSong(new ArrayList<MusicModel>(playlist),0);
 
 
     }

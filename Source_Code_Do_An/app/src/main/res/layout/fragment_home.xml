@@ -29,6 +29,7 @@
                 android:layout_height="match_parent">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/trending_songs"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
                     android:layout_marginStart="13dp"

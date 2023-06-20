@@ -11,11 +11,13 @@ import com.example.doanmobilemusicmedia0312.Fragment.PlayingMusicLyricsFrament;
 import com.example.doanmobilemusicmedia0312.Interface.IToolbarHandler;
 import com.example.doanmobilemusicmedia0312.Model.MusicModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlayMusicAdapter extends FragmentStateAdapter {
     MusicModel song;
     boolean isNewSong,isPlaylist;
+    ArrayList<MusicModel> playlist = null;
     IToolbarHandler listener;
     public PlayMusicAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
@@ -25,7 +27,7 @@ public class PlayMusicAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         switch (position){
-            case 0: return new PlayingMusicFragment(song, isNewSong);
+            case 0: return new PlayingMusicFragment(song, isNewSong, playlist);
             case 1: return new PlayingMusicLyricsFrament();
             default: return null;
         }
@@ -38,6 +40,7 @@ public class PlayMusicAdapter extends FragmentStateAdapter {
     public void setSong(MusicModel song){ this.song = song;}
     public void setIsNewSong(boolean isNewSong){ this.isNewSong = isNewSong;}
     public void setIsPlaylist(boolean isPlaylist){ this.isPlaylist = isPlaylist;}
+    public void setPlayList(ArrayList<MusicModel> playlist){ this.playlist = playlist;}
 
     public MusicModel getSong(){ return song; }
 

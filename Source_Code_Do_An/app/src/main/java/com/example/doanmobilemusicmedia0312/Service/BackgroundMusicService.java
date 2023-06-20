@@ -145,9 +145,12 @@ public class BackgroundMusicService extends Service implements MediaPlayer.OnCom
         MusicModel song = songList.get(songIndex);
         mediaPlayer.reset();
         try{
+            setBroadcastUpdateUI();
+
             mediaPlayer.setDataSource(song.getSourceUrl());
             mediaPlayer.prepare();
             mediaPlayer.start();
+
         }catch (Exception ex){
             ex.printStackTrace();
         }
@@ -166,7 +169,7 @@ public class BackgroundMusicService extends Service implements MediaPlayer.OnCom
             this.songList = songList;
             this.songIndex = songIndex;
 
-            setBroadcastUpdateUI();
+//            setBroadcastUpdateUI();
 
             playSong();
         }

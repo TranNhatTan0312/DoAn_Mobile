@@ -38,11 +38,13 @@ import com.squareup.picasso.Picasso;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class PlayMusicActivity extends AppCompatActivity implements IToolbarHandler{
     private static final String SHARED_PREFERENCES_NAME = "song_pref";
+    ArrayList<MusicModel>playList;
     String username;
     DocumentReference docRef;
     SharedPreferences sharedPreferences;
@@ -120,13 +122,13 @@ public class PlayMusicActivity extends AppCompatActivity implements IToolbarHand
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
-                                                Toast.makeText(PlayMusicActivity.this, "Thêm vào favorite thành công", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(PlayMusicActivity.this, "The song is added to favorite successfully", Toast.LENGTH_SHORT).show();
                                             }
                                         })
                                         .addOnFailureListener(new OnFailureListener() {
                                             @Override
                                             public void onFailure(@NonNull Exception e) {
-                                                Toast.makeText(PlayMusicActivity.this, "Thêm vào favorite thất bại", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(PlayMusicActivity.this, "The song is added to favorite failed", Toast.LENGTH_SHORT).show();
                                             }
                                         });
                             }
@@ -156,6 +158,7 @@ public class PlayMusicActivity extends AppCompatActivity implements IToolbarHand
 
         if(isNewMusic){
             song = (MusicModel) bundle.getSerializable("SONG");
+            playList = (ArrayList<MusicModel>) bundle.getSerializable("PLAYLIST_DATA");
 
             addViewPager();
 
@@ -207,6 +210,7 @@ public class PlayMusicActivity extends AppCompatActivity implements IToolbarHand
 
     private void addCommonControl() {
         viewPager = (ViewPager2) findViewById(R.id.play_music_view_paper);
+
 //        mainPanel = (FrameLayout) findViewById(R.id.activity_play_music_main_container);
     }
 
@@ -230,8 +234,11 @@ public class PlayMusicActivity extends AppCompatActivity implements IToolbarHand
         playMusicAdapter = new PlayMusicAdapter(this);
         playMusicAdapter.setToolbarListener(this);
         playMusicAdapter.setSong(song);
-        if(isNewMusic){
-            playMusicAdapter.setIsPlaylist(isPlaylist);
+        playMusicAdapter.setIsPlaylist(isPlaylist);
+        if(isNewMusic && isPlaylist){
+
+            playMusicAdapter.setPlayList(playList);
+
         }
         playMusicAdapter.setIsNewSong(isNewMusic);
         viewPager.setAdapter(playMusicAdapter);

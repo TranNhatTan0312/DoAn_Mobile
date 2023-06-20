@@ -102,9 +102,9 @@ public class PlaylistAdapter  extends RecyclerView.Adapter<PlaylistAdapter.Playl
 
             Bundle bundle = new Bundle();
             bundle.putBoolean("PLAYLIST",true);
+            bundle.putSerializable("PLAYLIST_DATA",adapter.arrayList);
             bundle.putSerializable("SONG",this.song);
             bundle.putBoolean("NEWSONG",true);
-
 
             intent.putExtra("data",bundle);
             context.startActivity(intent);

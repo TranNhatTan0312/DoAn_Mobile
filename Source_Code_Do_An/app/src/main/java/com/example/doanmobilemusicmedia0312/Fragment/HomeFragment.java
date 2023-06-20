@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -85,6 +86,7 @@ public class HomeFragment extends Fragment {
     GridLayout singer3;
     GridLayout singer4;
 
+    CardView trending_songs;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -106,7 +108,7 @@ public class HomeFragment extends Fragment {
         singer3 = view.findViewById(R.id.singer3);
         singer4 = view.findViewById(R.id.singer4);
 
-
+        trending_songs = view.findViewById(R.id.trending_songs);
         mood1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -213,6 +215,15 @@ public class HomeFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), MoodActivity.class);
                 intent.putExtra("singer","Shakira" );
                 intent.putExtra("type","singer");
+                startActivity(intent);
+            }
+        });
+
+        trending_songs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), MoodActivity.class);
+                intent.putExtra("type","trending");
                 startActivity(intent);
             }
         });
