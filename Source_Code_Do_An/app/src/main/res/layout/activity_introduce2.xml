@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.doanmobilemusicmedia0312.IntroduceActivity"
+    android:background="@color/dark">
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:src="@drawable/logo"
+        android:scaleType="centerCrop"
+        android:layout_above="@+id/enjoy"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="3dp"/>
+    <TextView
+        android:id="@+id/enjoy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/quote"
+        android:text="Enjoy Listening To Music"
+        android:textSize="25dp"
+        android:textColor="@color/my_white_4"
+        android:fontFamily="@font/satoshi_bold"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="20dp">
+    </TextView>
+    <TextView
+        android:id="@+id/quote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="17dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:text= "@string/quote2"
+        android:textColor="@color/my_gray_2"
+        android:fontFamily="@font/satoshi_medium"
+        android:layout_above="@+id/button_signin_signup"
+        android:layout_marginBottom="20dp"
+        android:gravity="center">
+    </TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_signin_signup"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="50dp"
+        android:layout_above="@+id/Lisa1"
+        >
+
+        <Button
+            android:id="@+id/btn_sIn"
+            android:layout_width="150dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="@color/my_orange_2"
+            android:fontFamily="@font/satoshi_bold"
+            android:text="Sign In"
+            android:textAllCaps="false"
+            android:textColor="@color/my_white_5"
+            android:textSize="18dp" />
+
+        <Button
+            android:id="@+id/btn_sUp"
+            android:layout_width="150dp"
+            android:layout_height="70dp"
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="@color/my_orange_2"
+            android:fontFamily="@font/satoshi_bold"
+            android:text="Sign Up"
+            android:textSize="18dp"
+            android:textColor="@color/my_white_5"
+            android:textAllCaps="false"
+            android:layout_marginLeft="20dp"
+            android:layout_centerHorizontal="true"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/Lisa1"
+        android:layout_width="350dp"
+        android:layout_height="370dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginBottom="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/lisa"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

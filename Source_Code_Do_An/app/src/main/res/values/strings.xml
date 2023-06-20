@@ -1,3 +1,56 @@
 <resources>
-    <string name="app_name">DoAnMobileMusicMedia0312</string>
+    <string name="play_music">Now playing</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">My Application</string>
+    <string name="quote">Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit. Sagittis enim\n purus sed phasellus. Cursus ornare id\nscelerisque aliquam.</string>
+    <string name="quote2"> S2PLAY is a proprietary Swedish audio streaming \and media services provider.</string>
+
+    <!--    Đây là phần của Tú-->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="music_library">Music Library</string>
+    <string name="go_pro">GO PRO</string>
+    <string name="_1">#1</string>
+    <string name="todo">TODO</string>
+    <string name="top">top</string>
+    <string name="to">TO</string>
+    <string name="j">j</string>
+    <string name="jjji">jjji</string>
+    <string name="mix_dec21">Mix:Dec21,</string>
+    <string name="_2020">2020</string>
+    <string name="_11">1</string>
+    <string name="recently_played">Recently Played</string>
+    <string name="on_my_way">On My Way</string>
+    <string name="alan_walker">Alan Walker</string>
+    <string name="mix_dec20">Mix:Dec20,</string>
+    <string name="select_your_mood">Select Your Mood</string>
+    <string name="title_home">home</string>
+    <string name="title_notifications">notifications</string>
+    <string name="title_search">Search</string>
+    <string name="title_myprofile">My Profile</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="morning_mood">Morning Mood</string>
+    <string name="romand">Romand</string>
+    <string name="r_b"><![CDATA[R&B]]></string>
+    <string name="_1n">#1</string>
+    <string name="trending_hits">TRENDING HITS</string>
+    <string name="pro_live_concerts">Pro Live Concerts</string>
+    <string name="best_of_2023">Best of 2023</string>
+    <string name="free_divine_concert">Free DIVINE Concert</string>
+    <string name="enjoy_live_concerts_and_benefits_with_pro_mode">Enjoy Live Concerts and benefits With Pro mode</string>
+    <string name="_2020_all_stars">2020 All Stars</string>
+    <string name="choose_your_artist">Choose Your Artist</string>
+    <string name="concert_of_2020">Concert of 2020</string>
+    <string name="resolution_2021">Resolution 2021</string>
+    <string name="live_performance">Live Performance</string>
+    <string name="cozy_mood">Cozy Mood</string>
+    <string name="dance">Dance</string>
+    <string name="song_of_mood">SONG OF MOOD</string>
+    <string name="selena_gomez">Selena Gomez</string>
+    <string name="zyan_malyk">Zyan Malyk</string>
+    <string name="divine">Divine</string>
+    <string name="shakira">Shakira</string>
 </resources>

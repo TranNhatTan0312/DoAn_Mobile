@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/playing_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/dark"
+       >
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           >
+            <ImageView
+                android:id="@+id/back_edit_profile"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:contentDescription="back_button"
+                android:src="@drawable/back_image_button_anim" />
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="120dp"
+            android:gravity="center"
+            android:background="@drawable/circle">
+            <ImageView
+                android:id="@+id/Edit1_avt"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:src="@drawable/user"/>
+        </RelativeLayout>
+
+
+        <EditText
+            android:id="@+id/Edi1_Fullname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_marginTop="290dp"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/id_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:layout_marginTop="320dp"
+            android:textAlignment="center"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="366dp"
+            android:layout_marginHorizontal="25dp"
+            android:background="@drawable/custom_layout">
+
+
+
+            <EditText
+                android:id="@+id/Edit1_gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="18dp"
+                android:layout_marginTop="10dp"
+                 />
+
+            <EditText
+                android:id="@+id/Edit1_dob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Edit1_gender"
+                android:layout_marginHorizontal="18dp"
+                />
+            <EditText
+                android:id="@+id/Edit1_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Edit1_dob"
+                android:layout_marginHorizontal="18dp"
+                />
+            <EditText
+                android:id="@+id/Edit1_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Edit1_phone"
+                android:layout_marginHorizontal="18dp"
+                />
+        </RelativeLayout>
+        <Button
+            android:id="@+id/btn_Save"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="@color/my_orange_2"
+            android:fontFamily="@font/satoshi_bold"
+            android:layout_marginBottom="150dp"
+            android:text="Save"
+            android:textSize="18dp"
+            android:textColor="@color/my_white_5"
+            android:textAllCaps="false"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

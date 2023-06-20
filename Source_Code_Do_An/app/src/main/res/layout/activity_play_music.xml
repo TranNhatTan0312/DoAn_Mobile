@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/activity_play_music_main_container"
+    android:background="@color/dark"
+    tools:context=".PlayMusicActivity"
+    >
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/play_music_view_paper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+    </androidx.viewpager2.widget.ViewPager2>
+    <include layout="@layout/fragment_song_option"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
