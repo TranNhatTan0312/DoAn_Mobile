@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.Image;
@@ -22,6 +23,7 @@ import com.example.doanmobilemusicmedia0312.Interface.IToolbarHandler;
 import com.example.doanmobilemusicmedia0312.Model.MusicModel;
 import com.example.doanmobilemusicmedia0312.Utils.SqliteHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -36,11 +38,16 @@ import com.squareup.picasso.Picasso;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PlayMusicActivity extends AppCompatActivity implements IToolbarHandler{
     private static final String SHARED_PREFERENCES_NAME = "song_pref";
+    ArrayList<MusicModel>playList;
+    String username;
     DocumentReference docRef;
-    SharedPreferences pref;
+    SharedPreferences sharedPreferences;
     SharedPreferences.Editor pref_editor;
     MusicModel song;
     String song_id;
@@ -62,6 +69,9 @@ public class PlayMusicActivity extends AppCompatActivity implements IToolbarHand
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_music);
+
+        sharedPreferences  = getSharedPreferences("users", Context.MODE_PRIVATE);
+        username = sharedPreferences.getString("username","");
 
         addControls();
         addEvents();
@@ -89,7 +99,44 @@ public class PlayMusicActivity extends AppCompatActivity implements IToolbarHand
         save_to_favorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                DocumentReference docRef = db.collection("favorites").document(username).collection("songs").document(song.getId());
+                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
 
+                            } else {
+
+                                Map<String, Object> songData = new HashMap<>();
+                                songData.put("name", song.getSongName());
+                                songData.put("singer", song.getSinger());
+                                songData.put("url", song.getSourceUrl());
+                                songData.put("cover_image", song.getImageUrl());
+                                songData.put("genre", song.getGenre());
+                                songData.put("length", song.getLength());
+                                songData.put("date_release", song.getDateRelease());
+
+                                docRef.set(songData)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Toast.makeText(PlayMusicActivity.this, "The song is added to favorite successfully", Toast.LENGTH_SHORT).show();
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(PlayMusicActivity.this, "The song is added to favorite failed", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                            }
+                        } else {
+                           Log.e("ERROR", "Get document is not successful");
+                        }
+                    }
+                });
             }
         });
     }
@@ -111,84 +158,50 @@ public class PlayMusicActivity extends AppCompatActivity implements IToolbarHand
 
         if(isNewMusic){
             song = (MusicModel) bundle.getSerializable("SONG");
+            playList = (ArrayList<MusicModel>) bundle.getSerializable("PLAYLIST_DATA");
 
             addViewPager();
 
-//            docRef = db.collection("songs").document(song_id);
-//            docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                @Override
-//                public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                    if (documentSnapshot.exists()) {
-//                        song.setSinger(documentSnapshot.getString("singer"));
-//                        song.setGenre(documentSnapshot.getString("genre"));
-//                        song.setLength(documentSnapshot.getString("length"));
-//                        song.setSongName(documentSnapshot.getString("name"));
-//                        song.setImageUrl(documentSnapshot.getString("cover_image"));
-//                        song.setDateRelease(documentSnapshot.getString("date_release"));
-//                        song.setSourceUrl(documentSnapshot.getString("url"));
-//                        song.setViews(documentSnapshot.getLong("views"));
-//
-//                    } else {
-//
-//                    }
-//                    addViewPager();
-//                }
-//            });
         }else{
             song = (MusicModel) bundle.getSerializable("OLDSONG");
 
-
-
             addViewPager();
         }
+
         option_title.setText(song.getSongName());
         option_singer.setText(song.getSinger());
         Picasso.get().load(song.getImageUrl()).into(option_image);
-        //                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//                    ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-//                    objectOutputStream.writeObject(song);
-//                    objectOutputStream.close();
-//                    byteArrayOutputStream.close();
-//                    byte[] bytes = byteArrayOutputStream.toByteArray();
-//                    intent.putExtra(Intent.EXTRA_STREAM, bytes);
+
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 FirebaseDynamicLinks.getInstance().createDynamicLink()
-                        .setLink(Uri.parse("https://s2play.com"+"?id="+song.getId()))
-                        .setDomainUriPrefix("https://doanmobilemusicmedia0312.page.link")
-                        .setAndroidParameters(new DynamicLink.AndroidParameters.Builder().build())
-                        .buildShortDynamicLink()
-                        .addOnCompleteListener(new OnCompleteListener<ShortDynamicLink>() {
-                            @Override
-                            public void onComplete(@NonNull Task<ShortDynamicLink> task) {
-                                if (task.isSuccessful()) {
-                                    Uri shortLink = task.getResult().getShortLink();
+                    .setLink(Uri.parse("https://s2play.com"+"?id="+song.getId()))
+                    .setDomainUriPrefix("https://doanmobilemusicmedia0312.page.link")
+                    .setAndroidParameters(new DynamicLink.AndroidParameters.Builder().build())
+                    .buildShortDynamicLink()
+                    .addOnCompleteListener(new OnCompleteListener<ShortDynamicLink>() {
+                        @Override
+                        public void onComplete(@NonNull Task<ShortDynamicLink> task) {
+                            if (task.isSuccessful()) {
+                                Uri shortLink = task.getResult().getShortLink();
 
-                                    // Chia sẻ shortLink đến các ứng dụng khác
-                                    Intent intent = new Intent(Intent.ACTION_SEND);
-                                    intent.setType("text/plain");
-                                    intent.putExtra(Intent.EXTRA_SUBJECT, "Chia sẻ bài hát");
-                                    intent.putExtra(Intent.EXTRA_TEXT, shortLink.toString());
-                                    startActivity(Intent.createChooser(intent, "Chọn ứng dụng để chia sẻ"));
-                                } else {
-                                    // Xử lý lỗi
-                                    Exception e = task.getException();
-                                    if (e != null) {
-                                        Log.e("Dynamic Links", "Error creating short link", e);
-                                    }
+                                // Chia sẻ shortLink đến các ứng dụng khác
+                                Intent intent = new Intent(Intent.ACTION_SEND);
+                                intent.setType("text/plain");
+                                intent.putExtra(Intent.EXTRA_SUBJECT, "Chia sẻ bài hát");
+                                intent.putExtra(Intent.EXTRA_TEXT, shortLink.toString());
+                                startActivity(Intent.createChooser(intent, "Chọn ứng dụng để chia sẻ"));
+                            } else {
+                                // Xử lý lỗi
+                                Exception e = task.getException();
+                                if (e != null) {
+                                    Log.e("Dynamic Links", "Error creating short link", e);
                                 }
                             }
-                        });
-
-//                String uri = "https://s2play/" + song.getId();
-//                Intent intent = new Intent(Intent.ACTION_SEND);
-//                intent.setType("text/plain");
-//                intent.putExtra(Intent.EXTRA_TEXT, uri);
-//                startActivity(Intent.createChooser(intent, "Share Music"));
-
-
+                        }
+                    });
 
             }
         });
@@ -197,6 +210,7 @@ public class PlayMusicActivity extends AppCompatActivity implements IToolbarHand
 
     private void addCommonControl() {
         viewPager = (ViewPager2) findViewById(R.id.play_music_view_paper);
+
 //        mainPanel = (FrameLayout) findViewById(R.id.activity_play_music_main_container);
     }
 
@@ -220,8 +234,11 @@ public class PlayMusicActivity extends AppCompatActivity implements IToolbarHand
         playMusicAdapter = new PlayMusicAdapter(this);
         playMusicAdapter.setToolbarListener(this);
         playMusicAdapter.setSong(song);
-        if(isNewMusic){
-            playMusicAdapter.setIsPlaylist(isPlaylist);
+        playMusicAdapter.setIsPlaylist(isPlaylist);
+        if(isNewMusic && isPlaylist){
+
+            playMusicAdapter.setPlayList(playList);
+
         }
         playMusicAdapter.setIsNewSong(isNewMusic);
         viewPager.setAdapter(playMusicAdapter);

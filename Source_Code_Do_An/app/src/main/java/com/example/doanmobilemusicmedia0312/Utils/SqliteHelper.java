@@ -81,6 +81,20 @@ public class SqliteHelper extends SQLiteOpenHelper {
         db.close();
         return result > 0;
     }
+    public int getNumberOfSongPlaylist() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query = "SELECT COUNT(*) FROM " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(query,null);
+
+        int count = 0;
+        if (cursor.moveToFirst()) {
+            count = cursor.getInt(0);
+        }
+
+        cursor.close();
+        return count;
+    }
     public MusicModel getMusicFromPlaylist(String songId){
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE "+ ID_SONG_COL +"='"+songId +"'";

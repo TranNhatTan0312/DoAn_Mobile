@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ import com.example.doanmobilemusicmedia0312.Model.MusicModel;
 import com.example.doanmobilemusicmedia0312.Model.SearchSongModel;
 import com.example.doanmobilemusicmedia0312.PlayMusicActivity;
 import com.example.doanmobilemusicmedia0312.R;
+import com.example.doanmobilemusicmedia0312.Utils.SqliteHelper;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -39,7 +41,7 @@ public class PlaylistAdapter  extends RecyclerView.Adapter<PlaylistAdapter.Playl
     @Override
     public PlaylistHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.search_music_detail_item, parent, false);
-        return new PlaylistHolder(view);
+        return new PlaylistHolder(view).linkAdapter(this);
     }
 
     @Override
@@ -61,16 +63,34 @@ public class PlaylistAdapter  extends RecyclerView.Adapter<PlaylistAdapter.Playl
         ImageView img;
 
         MusicModel song;
+        ImageButton deleteButton;
+        PlaylistAdapter adapter;
 
         public PlaylistHolder(@NonNull View itemView) {
             super(itemView);
             musicName = itemView.findViewById(R.id.txt);
             musicNum = itemView.findViewById(R.id.txt2);
             img = itemView.findViewById(R.id.img);
+            deleteButton = itemView.findViewById(R.id.deleteButton);
+
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SqliteHelper sqliteHelper = new SqliteHelper(context);
+                    boolean result = sqliteHelper.deleteMusicFromPlaylist(song.getId());
+                    if(result){
+                        adapter.arrayList.remove(getAdapterPosition());
+                        adapter.notifyItemRemoved(getAdapterPosition());
+                    }
+                }
+            });
 
             itemView.setOnClickListener(this);
         }
-
+        public PlaylistHolder linkAdapter(PlaylistAdapter adapter){
+            this.adapter = adapter;
+            return this;
+        }
         public void setSong(MusicModel song) {
             this.song = song;
         }
@@ -82,9 +102,9 @@ public class PlaylistAdapter  extends RecyclerView.Adapter<PlaylistAdapter.Playl
 
             Bundle bundle = new Bundle();
             bundle.putBoolean("PLAYLIST",true);
+            bundle.putSerializable("PLAYLIST_DATA",adapter.arrayList);
             bundle.putSerializable("SONG",this.song);
             bundle.putBoolean("NEWSONG",true);
-
 
             intent.putExtra("data",bundle);
             context.startActivity(intent);

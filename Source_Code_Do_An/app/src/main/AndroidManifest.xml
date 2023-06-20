@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -25,6 +27,9 @@
                 <data android:scheme="https" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MoodActivity"
+            android:exported="false" />
         <activity
             android:name=".MyPlaylistActivity"
             android:exported="false" />
@@ -61,7 +66,7 @@
         </activity>
         <activity
             android:name=".PlayMusicActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".IntroduceActivity"
             android:exported="true" />

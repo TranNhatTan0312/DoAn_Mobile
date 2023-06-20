@@ -46,5 +46,11 @@
     <string name="concert_of_2020">Concert of 2020</string>
     <string name="resolution_2021">Resolution 2021</string>
     <string name="live_performance">Live Performance</string>
-
+    <string name="cozy_mood">Cozy Mood</string>
+    <string name="dance">Dance</string>
+    <string name="song_of_mood">SONG OF MOOD</string>
+    <string name="selena_gomez">Selena Gomez</string>
+    <string name="zyan_malyk">Zyan Malyk</string>
+    <string name="divine">Divine</string>
+    <string name="shakira">Shakira</string>
 </resources>
