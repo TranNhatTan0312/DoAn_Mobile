@@ -18,7 +18,7 @@ public class MusicModel implements Serializable {
 
     }
 
-    public MusicModel(String id, String imageUrl, String dateRelease, String genre, String length, String songName, String singer, String sourceUrl, int views) {
+    public MusicModel(String id,String imageUrl, String dateRelease, String genre, String length, String songName, String singer, String sourceUrl, int views) {
         this.id = id;
         this.imageUrl = imageUrl;
         this.dateRelease = dateRelease;
@@ -30,13 +30,13 @@ public class MusicModel implements Serializable {
         this.views = views;
     }
 
-
     public String getId() {
         return id;
     }
-    public void setId(String id) {
-        this.id = id;    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getImageUrl() {
         return imageUrl;

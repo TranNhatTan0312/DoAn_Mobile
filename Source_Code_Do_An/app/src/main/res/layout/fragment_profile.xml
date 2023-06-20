@@ -61,6 +61,7 @@
         </LinearLayout>
 
         <RelativeLayout
+            android:id="@+id/go_to_download"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginHorizontal="17dp"
@@ -101,6 +102,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/go_to_playlist"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginHorizontal="17dp"
