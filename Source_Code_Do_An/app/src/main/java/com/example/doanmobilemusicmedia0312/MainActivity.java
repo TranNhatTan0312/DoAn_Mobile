@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements IMusicActivity {
             music_status_bar.setVisibility(View.GONE);
         }else{
             Intent intent = new Intent(this, BackgroundMusicService.class);
-            if(bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE))
+            bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
             try{
                 music_status_bar.setVisibility(View.VISIBLE);
                 if(musicService != null){

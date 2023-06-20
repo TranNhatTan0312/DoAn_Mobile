@@ -22,6 +22,7 @@ import com.example.doanmobilemusicmedia0312.Model.SearchSongModel;
 import com.example.doanmobilemusicmedia0312.MyPlaylistActivity;
 import com.example.doanmobilemusicmedia0312.R;
 import com.example.doanmobilemusicmedia0312.SearchDetailActivity;
+import com.example.doanmobilemusicmedia0312.Utils.SqliteHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -33,8 +34,10 @@ import java.util.ArrayList;
 
 public class ProfileFragment extends Fragment {
 
-    private TextView edit_profile;
+    private TextView edit_profile,number_playlist;
     private RelativeLayout go_to_playlist;
+    SqliteHelper sqliteHelper;
+
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -58,7 +61,7 @@ public class ProfileFragment extends Fragment {
 
         edit_profile = view.findViewById(R.id.edit_profile_information);
         go_to_playlist = view.findViewById(R.id.go_to_playlist);
-
+        number_playlist = view.findViewById(R.id.number_playlist);
 
 
 
@@ -83,7 +86,7 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-
+        sqliteHelper = new SqliteHelper(getActivity());
+        number_playlist.setText(sqliteHelper.getNumberOfSongPlaylist()+"");
     }
 }
