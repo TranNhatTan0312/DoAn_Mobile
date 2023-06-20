@@ -57,9 +57,9 @@ public class EditProfileActivity extends AppCompatActivity {
                                     // Xử lý dữ liệu từ mỗi document
                                     gender.setText(document.getString("gender"));
                                     dob.setText(document.getString("date_of_birth"));
-                                    name.setText((String) document.get("full_name"));
-                                    phone.setText((String) document.get("phone_number"));
-                                    pass.setText(document.getString("password"));
+                                    name.setText(document.getString("full_name"));
+                                    phone.setText(document.getString("phone_number"));
+//                                  pass.setText(document.getString("password"));
 
                                 }
                             } else {
