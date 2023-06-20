@@ -58,7 +58,7 @@ public class EditProfileActivity extends AppCompatActivity {
                                     gender.setText(document.getString("gender"));
                                     dob.setText(document.getString("date_of_birth"));
                                     name.setText((String) document.get("full_name"));
-                                    phone.setText("033");
+                                    phone.setText((String) document.get("phone_number"));
                                     pass.setText(document.getString("password"));
 
                                 }
