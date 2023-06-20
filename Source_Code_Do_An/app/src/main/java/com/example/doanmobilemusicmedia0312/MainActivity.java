@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -28,6 +29,7 @@ import com.example.doanmobilemusicmedia0312.Fragment.ProfileFragment;
 import com.example.doanmobilemusicmedia0312.Fragment.SearchFragment;
 import com.example.doanmobilemusicmedia0312.Interface.IMusicActivity;
 import com.example.doanmobilemusicmedia0312.Model.MusicModel;
+import com.example.doanmobilemusicmedia0312.Model.Users;
 import com.example.doanmobilemusicmedia0312.Service.BackgroundMusicBinder;
 import com.example.doanmobilemusicmedia0312.Service.BackgroundMusicService;
 import com.example.doanmobilemusicmedia0312.Utils.SongTimeDisplay;
@@ -48,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements IMusicActivity {
 
     private TextView music_status_bar_song_name, music_status_bar_singer;
     private ImageView  music_status_bar_image;
-
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
 

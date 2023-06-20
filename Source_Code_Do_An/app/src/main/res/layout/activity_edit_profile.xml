@@ -37,16 +37,18 @@
             android:gravity="center"
             android:background="@drawable/circle">
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:id="@+id/Edit1_avt"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 android:src="@drawable/user"/>
         </RelativeLayout>
 
 
         <TextView
+            android:id="@+id/Edi1_Fullname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CAMVAN"
+
             android:textColor="@color/white"
             android:textSize="25dp"
             android:textStyle="bold"
@@ -56,7 +58,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="User: 123456"
+            android:text="id:"
             android:textColor="@color/white"
             android:textSize="15dp"
             android:layout_marginTop="320dp"
@@ -116,41 +118,41 @@
                 android:layout_marginTop="200dp"/>
 
             <EditText
-                android:id="@+id/mail"
+                android:id="@+id/Edit1_mail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="18dp"
                 android:layout_marginTop="10dp"
-                android:text="11234@gmail" />
+                 />
 
             <EditText
-                android:id="@+id/junior"
+                android:id="@+id/Edit1_dob"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/mail"
+                android:layout_below="@id/Edit1_mail"
                 android:layout_marginHorizontal="18dp"
-                android:text="Junior"/>
+                />
             <EditText
-                android:id="@+id/sdt"
+                android:id="@+id/Edit1_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/junior"
+                android:layout_below="@id/Edit1_dob"
                 android:layout_marginHorizontal="18dp"
-                android:text="1214154314"/>
+                />
             <EditText
-                android:id="@+id/date"
+                android:id="@+id/Edit1_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/sdt"
+                android:layout_below="@id/Edit1_phone"
                 android:layout_marginHorizontal="18dp"
-                android:text="2222222"/>
+                />
             <EditText
-                android:id="@+id/sex"
+                android:id="@+id/Edit1_sex"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/date"
+                android:layout_below="@id/Edit1_date"
                 android:layout_marginHorizontal="18dp"
-                android:text="Male"/>
+                />
         </RelativeLayout>
 
 

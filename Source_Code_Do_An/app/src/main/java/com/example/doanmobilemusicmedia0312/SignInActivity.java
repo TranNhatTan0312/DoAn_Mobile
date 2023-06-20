@@ -39,7 +39,6 @@ public class SignInActivity extends AppCompatActivity {
     TextView Register;
 
     FirebaseFirestore db;
-    private SharedPreferences sharedPreferences;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -48,7 +47,9 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         db = FirebaseFirestore.getInstance();
-        sharedPreferences  = getSharedPreferences("users", Context.MODE_PRIVATE);
+        // Khởi tạo SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        //sharedPreferences  = getSharedPreferences("users", Context.MODE_PRIVATE);
         editUsername = findViewById(R.id.Get_Gmail);
         editPassword = findViewById(R.id.get_Password);
         buttonlogin = findViewById(R.id.btn_SignIn);
@@ -100,6 +101,10 @@ public class SignInActivity extends AppCompatActivity {
                                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                     startActivity(intent);
                                     Toast.makeText(getApplicationContext(),"Đăng nhập thành công",Toast.LENGTH_LONG).show();
+                                    // luu trang thai
+                                    editor.putBoolean("isLoggedIn", true);
+                                    editor.apply();
+
                                 }
                                 else{
                                     Toast.makeText(getApplicationContext(),"Đăng nhập thất bại",Toast.LENGTH_LONG).show();
