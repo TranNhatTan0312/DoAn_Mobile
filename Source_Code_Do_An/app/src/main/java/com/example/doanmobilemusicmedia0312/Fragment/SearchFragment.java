@@ -65,7 +65,7 @@ public class SearchFragment extends Fragment {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 if(!queryDocumentSnapshots.isEmpty()){
                     for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()){
-                      
+
                         MusicModel item = new MusicModel();
                         item.setId(document.getId());
                         item.setImageUrl(document.getString("cover_image"));
