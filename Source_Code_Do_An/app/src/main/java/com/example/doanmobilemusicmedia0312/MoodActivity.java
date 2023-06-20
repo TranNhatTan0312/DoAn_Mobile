@@ -77,7 +77,7 @@ public class MoodActivity extends AppCompatActivity {
                         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(MoodActivity.this);
                         rcyMood.setLayoutManager(layoutManager);
 
-                        MoodAdapter customAdapter = new MoodAdapter(getApplicationContext(), SongOfMoodList);
+                        MoodAdapter customAdapter = new MoodAdapter(MoodActivity.this, SongOfMoodList);
 
                         rcyMood.setAdapter(customAdapter);
                     }
@@ -112,7 +112,7 @@ public class MoodActivity extends AppCompatActivity {
                         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(MoodActivity.this);
                         rcyMood.setLayoutManager(layoutManager);
 
-                        MoodAdapter customAdapter = new MoodAdapter(getApplicationContext(), SongOfMoodList);
+                        MoodAdapter customAdapter = new MoodAdapter(MoodActivity.this, SongOfMoodList);
 
                         rcyMood.setAdapter(customAdapter);
                     }

@@ -23,6 +23,7 @@ import com.example.doanmobilemusicmedia0312.Model.MoodModel;
 import com.example.doanmobilemusicmedia0312.Model.MusicModel;
 import com.example.doanmobilemusicmedia0312.PlayMusicActivity;
 import com.example.doanmobilemusicmedia0312.R;
+import com.squareup.picasso.Picasso;
 
 import java.security.AccessControlContext;
 import java.util.ArrayList;
@@ -52,7 +53,7 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.MyHolder> {
         MusicModel musicModelClass = arrayList.get(position);
         holder.musicName.setText(musicModelClass.getSongName());
         holder.musicSinger.setText(String.valueOf(musicModelClass.getSinger()));
-        holder.img.setImageURI(Uri.parse(musicModelClass.getImageUrl()));
+        Picasso.get().load(musicModelClass.getImageUrl()).into(holder.img);
         holder.setSong(musicModelClass);
     }
 
@@ -74,6 +75,7 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.MyHolder> {
             musicSinger = itemView.findViewById(R.id.txt2);
             img = itemView.findViewById(R.id.img);
 
+            itemView.setOnClickListener(this);
         }
 
         @Override

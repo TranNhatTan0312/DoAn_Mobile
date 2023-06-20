@@ -1,5 +1,7 @@
 package com.example.doanmobilemusicmedia0312.Fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -25,7 +27,7 @@ public class FavoriteFragment extends Fragment {
     public FavoriteFragment() {
         // Required empty public constructor
     }
-
+    private SharedPreferences sharedPreferences;
 
     public static FavoriteFragment newInstance(String param1, String param2) {
         FavoriteFragment fragment = new FavoriteFragment();
@@ -36,8 +38,10 @@ public class FavoriteFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences  = getContext().getSharedPreferences("users", Context.MODE_PRIVATE);
+        String username = sharedPreferences.getString("username","");
 
-        db.collection("favorites").document("ac")
+        db.collection("favorites").document(username)
                 .collection("songs")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
