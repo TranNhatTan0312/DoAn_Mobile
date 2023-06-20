@@ -1,6 +1,8 @@
 package com.example.doanmobilemusicmedia0312.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
@@ -32,7 +34,8 @@ public class SearchFragment extends Fragment {
 
     ArrayList<MusicModel> data = new ArrayList<>();
 
-
+    SharedPreferences sharedPreferences;
+    String username;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -58,7 +61,8 @@ public class SearchFragment extends Fragment {
         simpleGrid = (GridView) view.findViewById(R.id.simpleGridView);
         searchView = view.findViewById(R.id.searchView);
 
-
+        sharedPreferences  = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        username = sharedPreferences.getString("username","");
 
         db.collection("songs").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -78,7 +82,7 @@ public class SearchFragment extends Fragment {
 
                         data.add(item);
                     }
-                    SearchMusicAdapter customAdapter = new SearchMusicAdapter(getContext(), data);
+                    SearchMusicAdapter customAdapter = new SearchMusicAdapter(getActivity(), data);
                     simpleGrid.setAdapter(customAdapter);
                 }
 
@@ -91,7 +95,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    Intent intent = new Intent(getContext(), SearchDetailActivity.class);
+                    Intent intent = new Intent(getActivity(), SearchDetailActivity.class);
                     startActivity(intent);
                 }
             }

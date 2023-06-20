@@ -1,6 +1,8 @@
 package com.example.doanmobilemusicmedia0312.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -37,13 +39,16 @@ public class ProfileFragment extends Fragment {
     private TextView edit_profile,number_playlist;
     private RelativeLayout go_to_playlist;
     SqliteHelper sqliteHelper;
+    private TextView txt_name;
+    SharedPreferences sharedPreferences;
+    String username;
 
     public ProfileFragment() {
-        // Required empty public constructor
     }
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     public static ProfileFragment newInstance(String param1, String param2) {
         ProfileFragment fragment = new ProfileFragment();
+
         return fragment;
     }
 
@@ -62,8 +67,10 @@ public class ProfileFragment extends Fragment {
         edit_profile = view.findViewById(R.id.edit_profile_information);
         go_to_playlist = view.findViewById(R.id.go_to_playlist);
         number_playlist = view.findViewById(R.id.number_playlist);
+        txt_name = view.findViewById(R.id.txt_name);
 
-
+        sharedPreferences  = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        username = sharedPreferences.getString("username","");
 
         addEvents();
 
@@ -86,6 +93,8 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        txt_name.setText(username);
         sqliteHelper = new SqliteHelper(getActivity());
         number_playlist.setText(sqliteHelper.getNumberOfSongPlaylist()+"");
     }

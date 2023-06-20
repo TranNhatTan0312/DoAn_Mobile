@@ -48,6 +48,7 @@ import com.example.doanmobilemusicmedia0312.R;
 import com.example.doanmobilemusicmedia0312.Service.BackgroundMusicBinder;
 import com.example.doanmobilemusicmedia0312.Service.BackgroundMusicService;
 import com.example.doanmobilemusicmedia0312.Utils.SongTimeDisplay;
+import com.example.doanmobilemusicmedia0312.Utils.SqliteHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -67,7 +68,7 @@ import java.util.logging.Logger;
 
 public class PlayingMusicFragment extends Fragment implements IMusicActivity {
     private static final String SHARED_PREFERENCES_NAME = "song_pref";
-    private ImageView moreOption, back, playIcon, logoImage, loopMusic, preMusic, nextMusic;
+    private ImageView moreOption, back, playIcon, logoImage, loopMusic, preMusic, nextMusic,randomMusic;
     private TextView txtCurrentTime, txtLengthTime, txtMusicName, txtSinger;
     private SeekBar musicTimerSeekBar;
     private MusicBroadcastReceiver receiver;
@@ -84,9 +85,10 @@ public class PlayingMusicFragment extends Fragment implements IMusicActivity {
         Picasso.get().load(song.getImageUrl()).into(logoImage);
         txtMusicName.setText(song.getSongName());
         txtSinger.setText(song.getSinger());
+//        txtLengthTime.setText(SongTimeDisplay.display(musicService.getDuration()));
     }
 
-    boolean isLoop;
+    boolean isLoop,isRandom;
     Thread updateSeekBarThread;
     private BackgroundMusicService musicService;
     private ServiceConnection serviceConnection = new ServiceConnection() {
@@ -110,7 +112,19 @@ public class PlayingMusicFragment extends Fragment implements IMusicActivity {
                 }
             };
 
-// ...
+            Runnable mRunnable2 = new Runnable() {
+                @Override
+                public void run() {
+                    if (musicService != null && isPlaying()) {
+                        int duration = musicService.getDuration();
+                        if (duration > 0) {
+                            musicTimerSeekBar.setMax(duration);
+                            txtLengthTime.setText(SongTimeDisplay.display(duration));
+                        }
+                    }
+                    mHandler.postDelayed(this, 2000);
+                }
+            };
 
             getActivity().runOnUiThread(new Runnable() {
                 @Override
@@ -120,6 +134,8 @@ public class PlayingMusicFragment extends Fragment implements IMusicActivity {
                         musicTimerSeekBar.setMax(duration);
                         txtLengthTime.setText(SongTimeDisplay.display(duration));
                         mHandler.postDelayed(mRunnable, 1000);
+                        mHandler.postDelayed(mRunnable2, 2000);
+
                     }
                 }
             });
@@ -151,7 +167,7 @@ public class PlayingMusicFragment extends Fragment implements IMusicActivity {
 
         pref = getContext().getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
         isLoop = pref.getBoolean("loop", false);
-
+        isRandom = pref.getBoolean("random",false);
     }
 
     public void setSongId(MusicModel song){
@@ -193,7 +209,7 @@ public class PlayingMusicFragment extends Fragment implements IMusicActivity {
         txtLengthTime = (TextView)view.findViewById(R.id.txtLengthTime);
         txtMusicName = view.findViewById(R.id.txtMusicName);
         txtSinger = view.findViewById(R.id.txtMusicSinger);
-
+        randomMusic = view.findViewById(R.id.randomMusic);
         if(this.song != null){
             updateUI(this.song);
         }
@@ -205,6 +221,11 @@ public class PlayingMusicFragment extends Fragment implements IMusicActivity {
     private void setInitValue() {
         if(isLoop){ loopMusic.setImageResource(R.drawable.reload_icon_2);}
         else{loopMusic.setImageResource(R.drawable.reload_icon);}
+
+        if(isRandom){
+            randomMusic.setImageResource(R.drawable.random_play_icon_2);
+        }
+        else randomMusic.setImageResource(R.drawable.random_play_icon);
 
     }
 
@@ -257,6 +278,27 @@ public class PlayingMusicFragment extends Fragment implements IMusicActivity {
                 setLooping(isLoop);
             }
         });
+
+        randomMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isRandom){
+                    isRandom = false;
+                    randomMusic.setImageResource(R.drawable.random_play_icon);
+                    pref_editor = pref.edit();
+                    pref_editor.putBoolean("random",false);
+                    pref_editor.apply();
+                }
+                else{
+                    isRandom = true;
+                    randomMusic.setImageResource(R.drawable.random_play_icon_2);
+                    pref_editor = pref.edit();
+                    pref_editor.putBoolean("random",true);
+                    pref_editor.apply();
+                }
+                setRandom(isRandom);
+            }
+        });
         preMusic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -295,10 +337,24 @@ public class PlayingMusicFragment extends Fragment implements IMusicActivity {
     }
 
     private void startMusic() {
-        if (playlist == null)
-            playSong(new ArrayList<MusicModel>(Arrays.asList(song)),0);
-        else
-            playSong(new ArrayList<MusicModel>(playlist),0);
+        if (playlist == null){
+            SqliteHelper sqliteHelper = new SqliteHelper(getActivity());
+            ArrayList<MusicModel> data =  sqliteHelper.showPlaylist();
+            data.add(0,song);
+            playSong(new ArrayList<MusicModel>(data),0);
+
+        }
+        else{
+            int index = 0;
+            for(int i =0 ; i<playlist.size();i++){
+                if(song.getId().equals(playlist.get(i).getId())){
+                    index = i;
+                    break;
+                }
+            }
+            playSong(new ArrayList<MusicModel>(playlist),index);
+
+        }
 
 
     }
@@ -309,9 +365,13 @@ public class PlayingMusicFragment extends Fragment implements IMusicActivity {
 
     public void playSong(List<MusicModel> songList, int songIndex) {
         Intent intent = new Intent(getContext(), BackgroundMusicService.class);
+
         intent.setAction(BackgroundMusicService.ACTION_PLAY);
         intent.putExtra(BackgroundMusicService.EXTRA_SONG_LIST, (ArrayList<MusicModel>) songList);
         intent.putExtra(BackgroundMusicService.EXTRA_SONG_INDEX, songIndex);
+        intent.putExtra(BackgroundMusicService.IS_LOOPING, isLoop);
+        intent.putExtra(BackgroundMusicService.IS_RANDOM, isRandom);
+
         getContext().startService(intent);
         getContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
 
@@ -364,7 +424,13 @@ public class PlayingMusicFragment extends Fragment implements IMusicActivity {
 
         }
     }
+    public void setRandom(boolean isRandom){
+        try{
+            musicService.setRandom(isRandom);
+        }catch (Exception ex){
 
+        }
+    }
     public void setSeekTo(int position){
         try{
             musicService.seekTo(position);

@@ -90,19 +90,20 @@ public class MainActivity extends AppCompatActivity implements IMusicActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(!getServiceRunning("com.example.doanmobilemusicmedia0312.Service.BackgroundMusicService")){
-            music_status_bar.setVisibility(View.GONE);
-        }else{
-            Intent intent = new Intent(this, BackgroundMusicService.class);
-            bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
-            try{
-//                if(musicService.isPlaying()){
-                    music_status_bar.setVisibility(View.VISIBLE);
-//                }
-            }catch(Exception ex){
+        try{
+            if(!getServiceRunning("com.example.doanmobilemusicmedia0312.Service.BackgroundMusicService")){
                 music_status_bar.setVisibility(View.GONE);
+            }else{
+                Intent intent = new Intent(this, BackgroundMusicService.class);
+                bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
+                music_status_bar.setVisibility(View.VISIBLE);
             }
+
+        }catch(Exception ex){
+            music_status_bar.setVisibility(View.GONE);
         }
+
+
     }
 
     private void addEvents() {

@@ -70,7 +70,7 @@ public class PlayMusicActivity extends AppCompatActivity implements IToolbarHand
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_music);
 
-        sharedPreferences  = getSharedPreferences("users", Context.MODE_PRIVATE);
+        sharedPreferences  = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         username = sharedPreferences.getString("username","");
 
         addControls();
@@ -223,7 +223,7 @@ public class PlayMusicActivity extends AppCompatActivity implements IToolbarHand
         share = findViewById(R.id.share);
         download = findViewById(R.id.download);
         save_to_favorite = findViewById(R.id.save_to_favorite);
-        sleep_time = findViewById(R.id.sleep_time);
+
 
         option_title = findViewById(R.id.option_title);
         option_singer = findViewById(R.id.option_singer);

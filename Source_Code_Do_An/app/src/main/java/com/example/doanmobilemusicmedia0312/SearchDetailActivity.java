@@ -47,7 +47,7 @@ public class SearchDetailActivity extends AppCompatActivity {
         // Khởi tạo Firebase Firestore
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference songsRef = db.collection("songs");
-        CollectionReference songsSearchRef = db.collection("search_history");
+        CollectionReference songsSearchRef = db.collection("history");
 
         songsSearchRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override

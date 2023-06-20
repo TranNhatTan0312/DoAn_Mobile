@@ -58,12 +58,10 @@
         android:textSize="15dp"
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="..."
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="30dp"
+    <ImageView
+        android:id="@+id/favorite_delete"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/menu_heart_selected"
         />
 </LinearLayout>

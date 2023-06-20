@@ -83,17 +83,6 @@
             android:layout_below="@id/card"
             android:layout_alignParentLeft="true"/>
 
-        <TextView
-            android:id="@+id/seeAll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:text="See All"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:layout_below="@id/card"
-            android:layout_alignParentRight="true"/>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"

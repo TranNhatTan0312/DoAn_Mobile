@@ -15,29 +15,28 @@
         >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:layout_marginHorizontal="30dp"
             android:layout_marginBottom="30dp"
             >
             <RelativeLayout
                 android:id="@+id/Ava"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/circle">
-                <TextView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/circle"
+                android:padding="10dp"
+                >
+                <ImageView
                     android:id="@+id/btnEdit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textAlignment="center"
-                    android:text="V"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/orange"
+                    android:src="@drawable/profile_icon"
                     android:gravity="center"/>
 
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/txt_name"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16dp"

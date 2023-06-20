@@ -47,7 +47,7 @@ public class FavoriteFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sharedPreferences  = getContext().getSharedPreferences("users", Context.MODE_PRIVATE);
+        sharedPreferences  = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         username = sharedPreferences.getString("username","");
 
 

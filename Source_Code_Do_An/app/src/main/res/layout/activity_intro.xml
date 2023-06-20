@@ -6,14 +6,15 @@
     android:layout_height="match_parent"
     tools:context="com.example.doanmobilemusicmedia0312.IntroduceActivity"
     android:background="@drawable/introduce_image">
+
     <ImageView
         android:layout_width="300dp"
         android:layout_height="100dp"
-        android:src="@drawable/logo"
-        android:scaleType="centerCrop"
         android:layout_above="@+id/enjoy"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="320dp"/>
+        android:layout_marginBottom="300dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/logo" />
     <TextView
         android:id="@+id/enjoy"
         android:layout_width="match_parent"

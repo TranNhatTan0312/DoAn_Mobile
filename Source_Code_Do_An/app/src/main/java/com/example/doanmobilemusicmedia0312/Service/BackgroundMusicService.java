@@ -19,6 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class BackgroundMusicService extends Service implements MediaPlayer.OnCompletionListener {
     public static final String ACTION_PLAY = "ACTION_PLAY";
@@ -30,6 +31,9 @@ public class BackgroundMusicService extends Service implements MediaPlayer.OnCom
     public static final String ACTION_RANDOM = "ACTION_RANDOM";
     public static final String EXTRA_SONG_LIST = "com.example.musicplayer.extra.SONG_LIST";
     public static final String EXTRA_SONG_INDEX = "com.example.musicplayer.extra.SONG_INDEX";
+    public static final String IS_LOOPING = "IS_LOOPING";
+    public static final String IS_RANDOM = "IS_RANDOM";
+
 
     public static final String ACTION_UPDATE_PROGRESS = "com.example.musicplayer.action.UPDATE_PROGRESS";
     public static final String EXTRA_CURRENT_POSITION = "com.example.musicplayer.extra.CURRENT_POSITION";
@@ -38,6 +42,8 @@ public class BackgroundMusicService extends Service implements MediaPlayer.OnCom
     private List<MusicModel> songList;
     private int songIndex = -1;
     private boolean isLooping = false;
+    private boolean isRandom = false;
+
     private final IBinder binder = new BackgroundMusicBinder(this);
     private final Handler handler = new Handler();
 //    public static String songUrl;
@@ -94,6 +100,9 @@ public class BackgroundMusicService extends Service implements MediaPlayer.OnCom
                 case ACTION_LOOP:
                     handleLoopAction();
                     break;
+                case ACTION_RANDOM:
+                    handleRandomAction();
+                    break;
             }
         }
         super.onStartCommand(intent, flags,startId);
@@ -119,24 +128,45 @@ public class BackgroundMusicService extends Service implements MediaPlayer.OnCom
     }
 
     private void handlePreviousAction() {
-        if(songIndex > 0){
-            songIndex--;
-            playSong();
-        }else{
-            songIndex = songList.size()-1;
-            playSong();
+        if(songList!= null){
+            if(isRandom){
+                handleRandomAction();
+            }else{
+                if(songIndex > 0){
+                    songIndex--;
+                    playSong();
+                }else{
+                    songIndex = songList.size()-1;
+                    playSong();
+                }
+            }
         }
     }
 
     private void handleNextAction() {
         if(songList != null){
-            if(songIndex < songList.size()-1){
-                songIndex++;
-                playSong();
+            if(isRandom){
+                handleRandomAction();
             }else{
-                songIndex = 0;
-                playSong();
+                if(songIndex < songList.size()-1){
+                    songIndex++;
+                    playSong();
+                }else{
+                    songIndex = 0;
+                    playSong();
+                }
             }
+        }
+    }
+    private void handleRandomAction() {
+        if(songList != null){
+            Random rand = new Random();
+            int randomNumber = rand.nextInt(songList.size());
+            while (songIndex == randomNumber){
+                randomNumber = rand.nextInt(songList.size());
+            }
+            songIndex = randomNumber;
+            playSong();
         }
 
     }
@@ -165,10 +195,15 @@ public class BackgroundMusicService extends Service implements MediaPlayer.OnCom
     private void handlePlayAction(Intent intent) {
         List<MusicModel> songList = (List<MusicModel>)intent.getSerializableExtra(EXTRA_SONG_LIST);
         int songIndex = intent.getIntExtra(EXTRA_SONG_INDEX, -1);
+        boolean isLoop = intent.getBooleanExtra(IS_LOOPING,false);
+        boolean isRandom = intent.getBooleanExtra(IS_RANDOM,false);
+
+
         if (songList != null && songIndex >= 0 && songIndex < songList.size()) {
             this.songList = songList;
             this.songIndex = songIndex;
-
+            setLooping(isLoop);
+            setRandom(isRandom);
 //            setBroadcastUpdateUI();
 
             playSong();
@@ -193,7 +228,11 @@ public class BackgroundMusicService extends Service implements MediaPlayer.OnCom
                 mediaPlayer.start();
             }else{
                 if(songList.size() > 1){
-                    handleNextAction();
+                    if(isRandom){
+                        handleRandomAction();
+                    }else {
+                        handleNextAction();
+                    }
                     setBroadcastUpdateUI();
                 }else{
                     mediaPlayer.stop();
@@ -225,8 +264,11 @@ public class BackgroundMusicService extends Service implements MediaPlayer.OnCom
     }
     public void setLooping(boolean isLooping) {
         this.isLooping = isLooping;
-    }
 
+    }
+    public void setRandom(boolean isRandom) {
+        this.isRandom = isRandom;
+    }
     public boolean isPlaying() {
         return mediaPlayer.isPlaying();
     }

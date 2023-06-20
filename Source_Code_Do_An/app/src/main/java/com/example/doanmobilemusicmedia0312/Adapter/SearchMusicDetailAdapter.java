@@ -123,7 +123,7 @@ public class SearchMusicDetailAdapter extends RecyclerView.Adapter<SearchMusicDe
             public void onClick(View v) {
                 // Truy cập Firebase Firestore
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
-                CollectionReference searchHistoryRef = db.collection("search_history");
+                CollectionReference searchHistoryRef = db.collection("history");
 
                 // Kiểm tra xem bài hát đã tồn tại trong search_history chưa
                 Query query = searchHistoryRef.whereEqualTo("name", searchModelClass.getSongName());

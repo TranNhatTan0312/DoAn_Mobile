@@ -17,8 +17,6 @@
             android:layout_width="30dp"
             android:layout_height="100dp"
             android:layout_centerVertical="true"
-            android:contentDescription="back_button"
-            android:src="@drawable/back_image_button_anim"
 
             />
 
@@ -86,7 +84,7 @@
         android:textColor="@color/white"
         android:fontFamily="@font/satoshi_medium"
         android:hint="Password"
-
+        android:inputType="textPassword"
         android:textColorHint="@color/my_white_6"
         android:textSize="17dp">
     </EditText>
@@ -94,7 +92,7 @@
 
     <Button
         android:id="@+id/btn_Register"
-        android:layout_width="300dp"
+        android:layout_width="320dp"
         android:layout_height="70dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="@color/my_orange_2"

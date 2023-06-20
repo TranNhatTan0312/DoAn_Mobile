@@ -73,7 +73,7 @@ public class SearchMusicAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
-                CollectionReference searchHistoryRef = db.collection("search_history");
+                CollectionReference searchHistoryRef = db.collection("history");
                 Query query = searchHistoryRef.whereEqualTo("name", song.getSongName());
                 query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -89,16 +89,16 @@ public class SearchMusicAdapter extends BaseAdapter {
                             songData.put("date_release", song.getDateRelease());
 
                             searchHistoryRef.add(songData)
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                        @Override
-                                        public void onSuccess(DocumentReference documentReference) {
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                        }
-                                    });
+                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    @Override
+                                    public void onSuccess(DocumentReference documentReference) {
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                    }
+                                });
                         }
                     }
                 });
