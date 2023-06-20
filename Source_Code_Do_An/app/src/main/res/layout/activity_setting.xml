@@ -160,7 +160,7 @@
             </LinearLayout>
 
             <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch_id"
+                android:id="@+id/switch_autoplay"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
@@ -170,22 +170,7 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginHorizontal="17dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/custom_layout" >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="Clear Recent History"
-                android:textSize="15dp"
-                android:layout_marginLeft="30dp"
-                android:textColor="@color/teal_700"/>
 
-        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -197,12 +182,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Clear Recent Searches"
+                android:text="Clear Searches history"
                 android:textSize="15dp"
                 android:layout_marginLeft="30dp"
                 android:textColor="@color/teal_700"/>
 
         </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_LogOut"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="@color/my_orange_2"
+            android:fontFamily="@font/satoshi_bold"
+            android:layout_marginBottom="20dp"
+            android:text="Log Out"
+            android:textSize="18dp"
+            android:textColor="@color/my_white_5"
+            android:textAllCaps="false"
+            android:layout_above="@+id/textview"
+            android:layout_gravity="center_horizontal"
+            />
+
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

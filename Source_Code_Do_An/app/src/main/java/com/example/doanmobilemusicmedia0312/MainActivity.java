@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
-import android.net.Uri;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +29,7 @@ import com.example.doanmobilemusicmedia0312.Fragment.ProfileFragment;
 import com.example.doanmobilemusicmedia0312.Fragment.SearchFragment;
 import com.example.doanmobilemusicmedia0312.Interface.IMusicActivity;
 import com.example.doanmobilemusicmedia0312.Model.MusicModel;
+import com.example.doanmobilemusicmedia0312.Model.Users;
 import com.example.doanmobilemusicmedia0312.Service.BackgroundMusicBinder;
 import com.example.doanmobilemusicmedia0312.Service.BackgroundMusicService;
 import com.example.doanmobilemusicmedia0312.Utils.SongTimeDisplay;
@@ -50,8 +50,6 @@ public class MainActivity extends AppCompatActivity implements IMusicActivity {
 
     private TextView music_status_bar_song_name, music_status_bar_singer;
     private ImageView  music_status_bar_image;
-    private boolean isServiceConnected = false;
-
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
 
@@ -60,11 +58,8 @@ public class MainActivity extends AppCompatActivity implements IMusicActivity {
             BackgroundMusicBinder binder = (BackgroundMusicBinder) iBinder;
             musicService = binder.getService();
 
-            if(musicService.isPlaying())
-                play_stop_music_button.setImageResource(R.drawable.arrow_play_mini_icon_2);
-            else
-                play_stop_music_button.setImageResource(R.drawable.arrow_play_mini_icon);
 
+            play_stop_music_button.setImageResource(R.drawable.arrow_play_mini_icon_2);
 
         }
 
@@ -79,18 +74,16 @@ public class MainActivity extends AppCompatActivity implements IMusicActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
         receiver = new MusicBroadcastReceiver(this);
         IntentFilter filter = new IntentFilter(MusicBroadcastReceiver.ACTION_SONG_CHANGED);
         registerReceiver(receiver, filter);
+
+//        this.deleteDatabase("s2playdb");
 
 
         addBottomNavigation();
         addControls();
         addEvents();
-
 
     }
 
@@ -103,14 +96,9 @@ public class MainActivity extends AppCompatActivity implements IMusicActivity {
             Intent intent = new Intent(this, BackgroundMusicService.class);
             bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
             try{
-                music_status_bar.setVisibility(View.VISIBLE);
-                if(musicService != null){
-                    if(musicService.isPlaying())
-                        play_stop_music_button.setImageResource(R.drawable.arrow_play_mini_icon_2);
-                    else
-                        play_stop_music_button.setImageResource(R.drawable.arrow_play_mini_icon);
-                }
-
+//                if(musicService.isPlaying()){
+                    music_status_bar.setVisibility(View.VISIBLE);
+//                }
             }catch(Exception ex){
                 music_status_bar.setVisibility(View.GONE);
             }
