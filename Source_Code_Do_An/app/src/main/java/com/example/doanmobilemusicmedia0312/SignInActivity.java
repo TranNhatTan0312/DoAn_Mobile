@@ -35,27 +35,36 @@ public class SignInActivity extends AppCompatActivity {
     // creating variable for button
     private Button signupBtn;
     private EditText editUsername, editPassword;
-    Button buttonlogin;
+    Button buttonlogin, back_signin;
     TextView Register;
 
     FirebaseFirestore db;
-    private SharedPreferences sharedPreferences;
 
-    @SuppressLint("MissingInflatedId")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         db = FirebaseFirestore.getInstance();
-        sharedPreferences  = getSharedPreferences("users", Context.MODE_PRIVATE);
+        // Khởi tạo SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        //sharedPreferences  = getSharedPreferences("users", Context.MODE_PRIVATE);
         editUsername = findViewById(R.id.Get_Gmail);
         editPassword = findViewById(R.id.get_Password);
         buttonlogin = findViewById(R.id.btn_SignIn);
         Register = findViewById(R.id.Register);
+        //back_signin.findViewById(R.id.back_321);
 
 
-
+       /* back_signin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Introduce2Activity.class);
+                startActivity(intent);
+                finish();
+            }
+        });*/
         Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,6 +109,9 @@ public class SignInActivity extends AppCompatActivity {
                                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                     startActivity(intent);
                                     Toast.makeText(getApplicationContext(),"Đăng nhập thành công",Toast.LENGTH_LONG).show();
+                                    // luu trang thai
+                                    editor.putBoolean("isLoggedIn", true);
+                                    editor.apply();
                                 }
                                 else{
                                     Toast.makeText(getApplicationContext(),"Đăng nhập thất bại",Toast.LENGTH_LONG).show();

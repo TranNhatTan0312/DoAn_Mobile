@@ -12,12 +12,22 @@ public class Users {
         Gender = "";
         Birth = "";
     }
+
     public Users(String fullName, String email, String phone, String password, String avatar, String gender, String birth) {
         FullName = fullName;
         this.email = email;
         Phone = phone;
         Password = password;
         Avatar = avatar;
+        Gender = gender;
+        Birth = birth;
+    }
+    public Users(String fullName, String email, String phone, String password, String gender, String birth) {
+        FullName = fullName;
+        this.email = email;
+        Phone = phone;
+        Password = password;
+        Avatar = "";
         Gender = gender;
         Birth = birth;
     }

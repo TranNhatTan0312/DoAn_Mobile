@@ -139,6 +139,7 @@ public class RegisterActivity extends AppCompatActivity {
         // user.put("password", user1.getPassword());
         user.put("password", Encrypt.HashPasswordMd5(Password));
 
+
         // below method is use to add data to Firebase Firestore.
         dbUsers.add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override

@@ -1,6 +1,8 @@
 package com.example.doanmobilemusicmedia0312;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -28,9 +30,22 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent intent = new Intent(SplashActivity.this, IntroduceActivity.class);
-                startActivity(intent);
-                finish();
+
+                // Đọc SharedPreferences
+                SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+
+                if (isLoggedIn) {
+                    // Người dùng đã đăng nhập thành công
+                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    // Người dùng chưa đăng nhập hoặc đã đăng xuất
+                    Intent intent = new Intent(SplashActivity.this, IntroduceActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
 
             @Override
