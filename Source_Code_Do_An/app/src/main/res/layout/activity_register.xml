@@ -8,15 +8,27 @@
     <LinearLayout
         android:id="@+id/LogoandBack"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
         >
 
         <ImageView
-            android:layout_width="match_parent"
+            android:id="@+id/back_123"
+            android:layout_width="30dp"
+            android:layout_height="100dp"
+            android:layout_centerVertical="true"
+            android:contentDescription="back_button"
+            android:src="@drawable/back_image_button_anim"
+
+            />
+
+        <ImageView
+            android:layout_width="300dp"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
+            android:padding="20dp"
             android:scaleType="centerCrop"
+
             android:src="@drawable/logo" />
 
     </LinearLayout>
@@ -44,6 +56,7 @@
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/satoshi_medium"
         android:hint="Full name"
+        android:textColor="@color/white"
         android:textColorHint="@color/my_white_6"
         android:textSize="17dp"></EditText>
 
@@ -57,6 +70,7 @@
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/satoshi_medium"
         android:hint="Email"
+        android:textColor="@color/white"
         android:textColorHint="@color/my_white_6"
         android:textSize="17dp">
     </EditText>
@@ -69,6 +83,7 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="20dp"
+        android:textColor="@color/white"
         android:fontFamily="@font/satoshi_medium"
         android:hint="Password"
 
