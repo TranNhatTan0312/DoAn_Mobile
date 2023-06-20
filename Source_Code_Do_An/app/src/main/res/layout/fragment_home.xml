@@ -91,150 +91,6 @@
                     android:textSize="20sp" />
             </GridLayout>
 
-            <TextView
-                android:id="@+id/tv2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:text="@string/recently_played"
-                android:textColor="@color/orange"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <GridLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="10dp"
-                        android:orientation="vertical"
-                        tools:ignore="UselessParent">
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="130dp"
-                            android:layout_height="130dp"
-                            android:layout_marginStart="13dp"
-                            app:cardCornerRadius="20dp">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/sorry"
-                                android:contentDescription="@string/_1"
-                                android:scaleType="centerCrop" />
-                        </androidx.cardview.widget.CardView>
-
-
-                        <TextView
-                            android:id="@+id/tv3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/mix_dec21"
-                            android:textColor="@color/white" />
-
-                        <TextView
-                            android:id="@+id/tv4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/_2020"
-                            android:textColor="@color/white" />
-                    </GridLayout>
-
-                    <GridLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        tools:ignore="UselessParent">
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="130dp"
-                            android:layout_height="130dp"
-                            android:layout_marginEnd="13dp"
-                            app:cardCornerRadius="20dp">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/way"
-                                android:contentDescription="@string/_1"
-                                android:scaleType="centerCrop" />
-                        </androidx.cardview.widget.CardView>
-
-                        <TextView
-                            android:id="@+id/tv5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/on_my_way"
-                            android:textColor="@color/white" />
-
-                        <TextView
-                            android:id="@+id/tv6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/alan_walker"
-                            android:textColor="@color/white" />
-
-                    </GridLayout>
-
-                    <GridLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        tools:ignore="UselessParent">
-
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="130dp"
-                            android:layout_height="130dp"
-                            android:layout_marginEnd="13dp"
-                            app:cardCornerRadius="20dp">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/havana"
-                                android:contentDescription="@string/_1"
-                                android:scaleType="centerCrop" />
-
-                        </androidx.cardview.widget.CardView>
-
-
-                        <TextView
-                            android:id="@+id/tv7"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/mix_dec20"
-                            android:textColor="@color/white" />
-
-                        <TextView
-                            android:id="@+id/tv8"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/_2020"
-                            android:textColor="@color/white" />
-
-                    </GridLayout>
-                </LinearLayout>
-            </HorizontalScrollView>
-
 
             <TextView
                 android:id="@+id/tv9"
@@ -262,6 +118,7 @@
                     android:orientation="horizontal">
 
                     <GridLayout
+                        android:id="@+id/mood1"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginEnd="10dp"
@@ -276,7 +133,7 @@
 
                             <ImageView
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="140dp"
                                 android:background="@drawable/gly"
                                 android:contentDescription="@string/_1"
                                 android:scaleType="centerCrop" />
@@ -297,36 +154,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        tools:ignore="UselessParent">
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="130dp"
-                            android:layout_height="130dp"
-                            android:layout_marginEnd="13dp"
-                            app:cardCornerRadius="20dp">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/mmr"
-                                android:contentDescription="@string/_1"
-                                android:scaleType="centerCrop" />
-                        </androidx.cardview.widget.CardView>
-
-                        <TextView
-                            android:id="@+id/tv11"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/romand"
-                            android:textColor="@color/white" />
-
-                    </GridLayout>
-
-                    <GridLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
+                        android:id="@+id/mood2"
                         tools:ignore="UselessParent">
 
 
@@ -355,6 +183,99 @@
                             android:textColor="@color/white" />
 
                     </GridLayout>
+
+
+                    <GridLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:id="@+id/mood3"
+                        tools:ignore="UselessParent">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            android:layout_marginEnd="13dp"
+                            app:cardCornerRadius="20dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/mmr"
+                                android:contentDescription="@string/_1"
+                                android:scaleType="centerCrop" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/tv34"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/romand"
+                            android:textColor="@color/white" />
+
+                    </GridLayout>
+
+                    <GridLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:id="@+id/mood4"
+                        tools:ignore="UselessParent">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            android:layout_marginEnd="13dp"
+                            app:cardCornerRadius="20dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/cozymood"
+                                android:contentDescription="@string/_1"
+                                android:scaleType="centerCrop" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/tv32"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/cozy_mood"
+                            android:textColor="@color/white" />
+                    </GridLayout>
+
+                    <GridLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:id="@+id/mood5"
+                        tools:ignore="UselessParent">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            android:layout_marginEnd="13dp"
+                            app:cardCornerRadius="20dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/dance"
+                                android:contentDescription="@string/_1"
+                                android:scaleType="centerCrop" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/tv35"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/dance"
+                            android:textColor="@color/white" />
+                    </GridLayout>
+
                 </LinearLayout>
             </HorizontalScrollView>
 
@@ -390,6 +311,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:orientation="vertical"
+                        android:id="@+id/concert1"
                         tools:ignore="UselessParent">
 
                         <androidx.cardview.widget.CardView
@@ -697,6 +619,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginEnd="10dp"
                         android:orientation="vertical"
+                        android:id="@+id/singer1"
                         tools:ignore="UselessParent">
 
                         <androidx.cardview.widget.CardView
@@ -719,7 +642,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="@string/morning_mood"
+                            android:text="@string/selena_gomez"
                             android:textColor="@color/white" />
 
                     </GridLayout>
@@ -728,6 +651,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
+                        android:id="@+id/singer2"
                         tools:ignore="UselessParent">
 
                         <androidx.cardview.widget.CardView
@@ -749,7 +673,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="@string/romand"
+                            android:text="@string/zyan_malyk"
                             android:textColor="@color/white" />
 
                     </GridLayout>
@@ -758,6 +682,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
+                        android:id="@+id/singer4"
                         tools:ignore="UselessParent">
 
 
@@ -778,14 +703,49 @@
 
 
                         <TextView
+                            android:id="@+id/tv40"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/divine"
+                            android:textColor="@color/white" />
+
+                    </GridLayout>
+
+                    <GridLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:id="@+id/singer3"
+                        tools:ignore="UselessParent">
+
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            android:layout_marginEnd="13dp"
+                            app:cardCornerRadius="100dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/shakira"
+                                android:contentDescription="@string/_1"
+                                android:scaleType="centerCrop" />
+
+                        </androidx.cardview.widget.CardView>
+
+
+                        <TextView
                             android:id="@+id/tv29"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="@string/r_b"
+                            android:text="@string/shakira"
                             android:textColor="@color/white" />
 
                     </GridLayout>
+
                 </LinearLayout>
             </HorizontalScrollView>
 
