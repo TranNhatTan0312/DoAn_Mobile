@@ -60,15 +60,6 @@
                     android:textColor="@color/orange"
                     />
 
-                <ImageButton
-                    android:id="@+id/voiceSearchButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_mic_black_24dp"
-                    android:background="#C4C4C4"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="16dp" />
-
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
