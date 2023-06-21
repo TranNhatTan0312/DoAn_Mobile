@@ -74,7 +74,7 @@ public class SearchMusicDetailAdapter extends RecyclerView.Adapter<SearchMusicDe
                     if (clickedPosition != RecyclerView.NO_POSITION) {
                         // Truy cập Firebase Firestore
                         FirebaseFirestore db = FirebaseFirestore.getInstance();
-                        CollectionReference searchHistoryRef = db.collection("search_history");
+                        CollectionReference searchHistoryRef = db.collection("history");
 
                         MusicModel clickedItem = arrayList.get(clickedPosition);
                         Query query = searchHistoryRef.whereEqualTo("name", clickedItem.getSongName());
